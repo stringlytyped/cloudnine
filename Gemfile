@@ -59,3 +59,7 @@ gem 'devise', '~> 4.7.1'
 gem 'cancancan', '~> 1.10'
 gem 'rolify', '~> 5.2.0'
 gem 'omniauth-spotify', '~> 0.0.13'
+
+gem 'rack-cors'
+gem 'active_model_serializers'
+gem 'rspotify'
