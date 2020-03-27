@@ -28,13 +28,13 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    user ||= User.new
-    if user.client?
-      can :manage, Playlist, user_id: user.id
-    elsif user.admin?
-      can :manage
-    else
-      can :read, :all
-    end
+    # user ||= User.new
+    # if user.client?
+    #   can :manage, Playlist, user_id: user.id
+    # elsif user.admin?
+    #   can :manage
+    # else
+    #   can :read, :all
+    # end
   end
 end
