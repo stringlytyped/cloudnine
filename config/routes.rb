@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     collection do
       get :top_100
       get :random
+      get :av_val
       get :search
     end
   end

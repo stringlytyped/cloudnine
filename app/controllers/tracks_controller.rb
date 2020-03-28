@@ -17,10 +17,21 @@ class TracksController < ApplicationController
       s_tracks = RSpotify::Playlist.browse_featured.first.tracks
       @total = s_tracks.map do |s_track|
         if s_track.audio_features.valence > 0.6 && s_track.audio_features.valence < 0.7
-           Track.new_from_spotify_track(s_track)
+           s_track.audio_features.valence
         end
       end
   render json: @total
+  end
+
+  def av_val
+    s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
+    total_val = 0
+    @total = s_tracks.length
+    s_tracks.map do |s_track|
+      total_val = total_val + s_track.audio_features.valence
+    end
+    @total = total_val/s_tracks.length
+    render json: @total
   end
 
   def search
