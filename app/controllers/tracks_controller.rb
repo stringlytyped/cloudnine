@@ -23,10 +23,10 @@ class TracksController < ApplicationController
   render json: @total
   end
 
-  def av_val
-    s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
+  def av_val(playlist)
+    #s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
+    s_tracks = playlist
     total_val = 0
-    av = s_tracks.length
     s_tracks.map do |s_track|
       total_val = total_val + s_track.audio_features.valence
     end
@@ -36,9 +36,10 @@ class TracksController < ApplicationController
 
   def new_playlist
     s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
-    av = av_val
+    av = av_val(s_tracks)
     s_tracks = s_tracks.map do |s_track|
-      if s_track.audio_features.valence > av + 0.05 && s_track.audio_features.valence < av + 0.15
+      val = s_track.audio_features.valence
+      if val > av + 0.05 && val < av + 0.15
          Track.new_from_spotify_track(s_track)
       end
     end
