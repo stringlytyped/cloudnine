@@ -8,7 +8,7 @@ class TracksController < ApplicationController
   def top_100
       s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
       @tracks = s_tracks.map do |s_track|
-        Track.new_from_spotify_track(s_track).audio_features.name
+        Track.new_from_spotify_track(s_track)
       end
   render json: @tracks
   end
@@ -55,13 +55,20 @@ class TracksController < ApplicationController
   end
 
   def recommend
-    #playlist = RSpotify::Playlist.find("1276640268", '2kpoUUJ5a4Cw3feTkFJhZ2').tracks
-    #av = av_val(playlist)
-    av = 0.5
-    min = av + 0.05
-    max = av + 0.15
-    recs = RSpotify::Recommendations.generate(limit: 10, seed_tracks: ['44fXOB2eBG8uaQJGwh26Bk'], min_valence: min, max_valence: max)
-    @tracks = recs
-    render json: @tracks
-  end
+      playlist = RSpotify::Playlist.find("1276640268", '2kpoUUJ5a4Cw3feTkFJhZ2').tracks
+      track_list = []
+      track_list_test = playlist.map do |song|
+        songs = Track.new_from_spotify_track(song).spotify_id
+        track_list.push(songs)
+      end
+      av = av_val(playlist)
+      min = av + 0.05
+      max = av + 0.15
+      seed_min = rand(track_list.length - 5)
+      seed_max = seed_min + 4
+      p seed_min
+      recs = RSpotify::Recommendations.generate(limit: 10, seed_tracks: track_list[seed_min..seed_max], min_valence: min, max_valence: max)
+      @tracks = recs
+      render json: @tracks
+    end
 end
