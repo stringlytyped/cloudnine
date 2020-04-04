@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :random
       get :new_playlist
       get :search
+      get :recommend
     end
   end
 
