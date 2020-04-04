@@ -5,23 +5,23 @@ class TracksController < ApplicationController
     @total = Track.all
   end
 
-  def top_100
-      s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
-      @tracks = s_tracks.map do |s_track|
-        Track.new_from_spotify_track(s_track)
-      end
-  render json: @tracks
-  end
+#  def top_100
+#      s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
+#      @tracks = s_tracks.map do |s_track|
+#        Track.new_from_spotify_track(s_track)
+#      end
+#  render json: @tracks
+#  end
 
-  def random
-      s_tracks = RSpotify::Playlist.browse_featured.first.tracks
-      @total = s_tracks.map do |s_track|
-        if s_track.audio_features.valence > 0.6 && s_track.audio_features.valence < 0.7
-           s_track.audio_features.valence
-        end
-      end
-  render json: @total
-  end
+#  def random
+#      s_tracks = RSpotify::Playlist.browse_featured.first.tracks
+#      @total = s_tracks.map do |s_track|
+#        if s_track.audio_features.valence > 0.6 && s_track.audio_features.valence < 0.7
+#           s_track.audio_features.valence
+#        end
+#      end
+#  render json: @total
+#  end
 
   def av_val(playlist)
     s_tracks = playlist
@@ -33,26 +33,26 @@ class TracksController < ApplicationController
     return @average
   end
 
-  def new_playlist
-    s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
-    av = av_val(s_tracks)
-    s_tracks = s_tracks.map do |s_track|
-      val = s_track.audio_features.valence
-      if val > av + 0.05 && val < av + 0.15
-         Track.new_from_spotify_track(s_track)
-      end
-    end
-    @tracks = s_tracks
-    render json: @tracks
-  end
+#  def new_playlist
+#    s_tracks = RSpotify::Playlist.find("1276640268", "2kpoUUJ5a4Cw3feTkFJhZ2").tracks
+#    av = av_val(s_tracks)
+#    s_tracks = s_tracks.map do |s_track|
+#      val = s_track.audio_features.valence
+#      if val > av + 0.05 && val < av + 0.15
+#         Track.new_from_spotify_track(s_track)
+#      end
+#    end
+#    @tracks = s_tracks
+#    render json: @tracks
+#  end
 
-  def search
-    s_tracks = RSpotify::Track.search(params[:q])
-    @tracks = s_tracks.map do |s_track|
-        Track.new_from_spotify_track(s_track)
-    end
-  render json: @tracks
-  end
+#  def search
+#    s_tracks = RSpotify::Track.search(params[:q])
+#    @tracks = s_tracks.map do |s_track|
+#        Track.new_from_spotify_track(s_track)
+#    end
+#  render json: @tracks
+#  end
 
   def recommend
       playlist = RSpotify::Playlist.find("1276640268", '2kpoUUJ5a4Cw3feTkFJhZ2').tracks
