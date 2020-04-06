@@ -1,0 +1,15 @@
+<%= flash_messages %>
+<h2>Playlist</h2>
+
+<p>
+  <strong>Name:</strong>
+  <%= @playlist.name %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  	$<%= @playlist.rating %>
+</p>
+
+<%= link_to 'Edit', edit_playlist_path(@playlist), class: "btn btn-warning" %>
+<%= link_to "Back", playlists_path, class: "btn btn-default" %>

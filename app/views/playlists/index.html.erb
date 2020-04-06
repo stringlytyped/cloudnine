@@ -1,0 +1,34 @@
+<%= flash_messages %>
+
+<h2>Playlist List</h2>
+<div class="playlist-block">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2">Name</th>
+        <th class="col-md-2">Rating</th>
+        <th class="col-md-2">Creator</th>
+        <th class="col-md-4">Options</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @playlists.each do |playlist| %>
+        <tr>
+          <td class="col-md-2"><%= playlist.name %></td>
+          <td class="col-md-2"><%= playlist.rating %></td>
+          <td class="col-md-2"><%= playlist.user.try(:email) %></td>
+          <td class="col-md-4">
+            <%= link_to 'Show', playlist_path(playlist), class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_playlist_path(playlist), class: "btn  btn-warning" %>
+            <%= link_to 'Destroy', playlist_path(playlist), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Product', new_playlist_path, class: "btn btn-primary" %>

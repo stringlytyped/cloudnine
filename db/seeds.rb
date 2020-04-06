@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user1 = User.create(provider: 'spotify',
+								    uid: 			'7x4w36usx0owhmmlpbx7khq0f')
+user1.add_role(:admin)
+user1.add_role(:standard)
