@@ -1,17 +1,17 @@
 class User < ApplicationRecord
-  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[spotify]
-  devise :rememberable
+  rolify
+  
   has_many :playlists, dependent: :destroy
 
   def admin?
     has_role?(:admin)
   end
 
-  def client?
-    has_role?(:client)
+  def standard?
+    has_role?(:standard)
   end 
 
   # Adapted from the Devise OmniAuth guide: https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview
