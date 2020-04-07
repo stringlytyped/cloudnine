@@ -66,8 +66,8 @@ class TracksController < ApplicationController
       max = av + 0.15
       seed_min = rand(track_list.length - 5)
       seed_max = seed_min + 4
-      p seed_min
-      recs = RSpotify::Recommendations.generate(limit: 10, seed_tracks: track_list[seed_min..seed_max], min_valence: min, max_valence: max)
+      #p seed_min
+      recs = RSpotify::Recommendations.generate(limit: 20, seed_tracks: track_list[seed_min..seed_max], min_valence: min, max_valence: max)
       @tracks = recs
       render json: @tracks
     end

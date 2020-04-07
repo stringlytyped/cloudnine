@@ -12,10 +12,10 @@ Rails.application.routes.draw do
 
   resources :tracks do
     collection do
-      get :top_100
-      get :random
-      get :new_playlist
-      get :search
+      #get :top_100
+      #get :random
+      #get :new_playlist
+      #get :search
       get :recommend
     end
   end
