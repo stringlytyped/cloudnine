@@ -7,6 +7,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :provider, null: false
       t.string :uid,      null: false
 
+      # RSpotify
+      t.string :credentials_json
+
       ## Database authenticatable
       # t.string :email,              null: false, default: ""
       # t.string :encrypted_password, null: false, default: ""
