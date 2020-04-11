@@ -5,6 +5,7 @@ class User < ApplicationRecord
   rolify
   
   has_many :playlists, dependent: :destroy
+  has_many :moods, dependent: :destroy
 
   def admin?
     has_role?(:admin)

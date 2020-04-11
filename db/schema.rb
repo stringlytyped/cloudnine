@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_224204) do
+ActiveRecord::Schema.define(version: 2020_04_11_170242) do
+
+  create_table "moods", force: :cascade do |t|
+    t.string "username"
+    t.float "rating"
+    t.datetime "when"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
 
   create_table "playlists", force: :cascade do |t|
     t.string "name"

@@ -1,0 +1,20 @@
+<%= flash_messages %>
+<h2>Mood</h2>
+
+<p>
+  <strong>Username:</strong>
+  <%= @mood.username %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  	$<%= @mood.rating %>
+</p>
+
+<p>
+  <strong>When:</strong>
+  	$<%= @mood.when %>
+</p>
+
+<%= link_to 'Edit', edit_mood_path(@mood), class: "btn btn-warning" %>
+<%= link_to "Back", moods_path, class: "btn btn-default" %>
