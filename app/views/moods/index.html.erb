@@ -1,6 +1,10 @@
 <%= flash_messages %>
 
 <h2>Mood History</h2>
+
+<%= line_chart @moods.pluck(:when, :rating), legend: true%>
+
+
 <div class="mood-block">
   <table class="table table-striped table-bordered table-hover">
     <thead>
