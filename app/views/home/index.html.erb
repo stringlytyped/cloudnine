@@ -1,7 +1,14 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<%= @output['weather'] %>
-<%#= @final_output%>
 
-<p>all data</p>
-<%#= @output %>
+<p>Find me in app/views/home/index.html.erb + home_controller</p>
+
+<%= form_tag("/home/index", method: "post") do %>
+  <%= label_tag :location %><br>
+  <%= text_field_tag :location %>
+  <p>
+    <%= submit_tag("Submit") %>
+  </p>
+<% end %>
+
+<%= @output["weather"] %>
+<%= @output['main'] %>
