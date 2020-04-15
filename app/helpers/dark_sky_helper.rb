@@ -1,0 +1,2 @@
+module DarkSkyHelper
+end
