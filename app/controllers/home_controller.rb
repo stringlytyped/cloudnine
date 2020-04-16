@@ -7,8 +7,6 @@ class HomeController < ApplicationController
     location = params[:location]
     url = ''
     url.concat('http://api.openweathermap.org/data/2.5/weather?q=' + location.to_s + '&appid=cb133295b04bc2c8c6ab41f01d95566c&units=metric')
-    #@url = 'http://api.openweathermap.org/data/2.5/weather?q=London&appid=cb133295b04bc2c8c6ab41f01d95566c&units=metric'    
-
 
     @uri = URI(url)
     @respone = Net::HTTP.get(@uri)
