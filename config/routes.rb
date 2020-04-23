@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :playlists
+
+  get '/playlist', to: 'playlists#show_mine'
+
 end
