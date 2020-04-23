@@ -49,7 +49,7 @@ class User < ApplicationRecord
   #
   # If +target_valence+ is provided, the returned tracks will be limited to those with valence values within ± 0.25.
   #
-  # @param [] target_valence The valence that the returned tracks should be near
+  # @param [Float] target_valence The valence that the returned tracks should be near
   #
   # @return [Array<Track>]
   def recommended_tracks(target_valence=nil)
@@ -72,8 +72,11 @@ class User < ApplicationRecord
         max_valence: max_valence,
         min_valence: min_valence
       ).tracks
-    
-    spotify_tracks.map { |spotify_track| Track.new_from_spotify_track(spotify_track) }
+
+    track_ids = spotify_tracks.map { |spotify_track| spotify_track.id }
+    audio_features_objects = RSpotify::AudioFeatures.find(track_ids)
+
+    Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
   end
 
   ##
