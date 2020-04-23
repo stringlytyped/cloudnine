@@ -3,6 +3,14 @@ class Playlist < ApplicationRecord
   has_and_belongs_to_many :tracks
 
   ##
+  # Returns the number of tracks in the playlist
+  #
+  # @return [Integer]
+  def size
+    tracks.size
+  end
+
+  ##
   # Calculates the average valence of the tracks in the playlist
   #
   # @return [Float]

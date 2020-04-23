@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   resources :playlists
 
+  get '/playlist', to: 'playlists#show_mine'
+
 end

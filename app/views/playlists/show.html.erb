@@ -1,15 +1,34 @@
 <%= flash_messages %>
-<h2>Playlist</h2>
+<h2>My playlist</h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @playlist.name %>
-</p>
+<table>
+  <tbody>
+    <% @playlist.tracks.each do |track| %>
+      <tr>
+        <td><%= image_tag(track.image, size: 45) %></td>
+        <td><%= track.name %></td>
+        <td><%= track.artist %></td>
+        <td><%= track.album %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Rating:</strong>
-  	$<%= @playlist.rating %>
-</p>
+<h3>Playlist stats</h3>
 
-<%= link_to 'Edit', edit_playlist_path(@playlist), class: "btn btn-warning" %>
-<%= link_to "Back", playlists_path, class: "btn btn-default" %>
+<dl>
+  <dt>Number of tracks</dt>
+  <dd><%= @playlist.size %></dd>
+
+  <dt>Average valence</dt>
+  <dd><%= @playlist.avg_valence %></dd>
+
+  <dt>Max valence</dt>
+  <dd><%= @playlist.max_valence %></dd>
+
+  <dt>Min valence</dt>
+  <dd><%= @playlist.min_valence %></dd>
+
+  <dt>Valence distribution</dt>
+  <dd><%= @playlist.valence_distribution.inspect %></dd>
+</dl>

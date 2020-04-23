@@ -1,7 +1,13 @@
 class PlaylistsController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+
+  def show_mine
+    @playlist = current_user.playlist
+    @playlist.populate(0.5, 30) if @playlist.size == 0
+    render :show
+  end
   
   def index
     @playlists = Playlist.all
