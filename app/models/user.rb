@@ -7,6 +7,8 @@ class User < ApplicationRecord
   rolify
   
   has_one :playlist, dependent: :destroy
+  has_and_belongs_to_many :locations, join_table: :users_locations
+
   before_create :build_default_playlist
 
   def admin?
