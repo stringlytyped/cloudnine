@@ -1,7 +1,7 @@
 require 'open_weather'
 
 class Location < ApplicationRecord
-  has_and_belongs_to_many :users, join_table: :users_locations
+  has_many :users
 
   ##
   # Given a city/town name, returns a Location record to represent the given city/town and the weather data associated therewith, provided by the OpenWeather API.

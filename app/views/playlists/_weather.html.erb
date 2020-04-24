@@ -1,0 +1,5 @@
+<h2>Weather</h2>
+
+<%= weather_icon(@location.condition_icon, @location.condition_description) %>
+<div><%= @location.condition_description.capitalize %></div>
+<div><%= @location.feels_like.round %></div>

@@ -5,7 +5,10 @@ class PlaylistsController < ApplicationController
 
   def show_mine
     @playlist = current_user.playlist
+    @location = current_user.location
+
     @playlist.populate(0.5, 30) if @playlist.size == 0
+    
     render :show
   end
   
