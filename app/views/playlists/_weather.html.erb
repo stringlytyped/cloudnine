@@ -1,9 +1,9 @@
-<div data-js-weather="<%= location.id %>" style="background-color: white; display: inline-block">
-  <% if location %>
+<% if location %>
+  <div data-js-weather="<%= location.id %>" style="background-color: white; display: inline-block">
     <%= weather_icon(location.condition_icon, location.condition_description) %>
     <div><%= location.condition_description.capitalize %></div>
     <div><%= location.feels_like.round %></div>
-  <% else %>
-    <p>No location is configured. Please provide a location in <%= link_to "Preferences", preferences_path %>.</p>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <p>No location is configured. Please provide a location in <%= link_to "Preferences", preferences_path %>.</p>
+<% end %>
