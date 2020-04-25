@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_04_24_114150) do
 
-  create_table "moods", force: :cascade do |t|
-    t.string "username"
-    t.float "rating"
-    t.datetime "when"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -44,6 +35,15 @@ ActiveRecord::Schema.define(version: 2020_04_24_114150) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["open_weather_id"], name: "index_locations_on_open_weather_id", unique: true
     t.index ["user_id"], name: "index_locations_on_user_id"
+  end
+
+  create_table "moods", force: :cascade do |t|
+    t.string "username"
+    t.float "rating"
+    t.datetime "when"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "playlists", force: :cascade do |t|
