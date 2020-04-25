@@ -81,23 +81,7 @@ class User < ApplicationRecord
     Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
   end
 
-  def play_songs()
-    spotify_user = self.to_rspotify_user
-    player = spotify_user.player
-    tracks = recommended_tracks(0.7)
 
-    track_ids = []
-    track_id_string = ""
-
-    for track in tracks
-      track_id_string.concat("spotify:track:")
-      track_id_string.concat(track.spotify_id)
-      track_ids.append(track_id_string)
-      track_id_string = ""
-    end
-    player.play_tracks(nil, track_ids)
-
-  end
   ##
   # Given an OmniAuth authentication hash, finds and returns the relevant User record.
   # If the User does not exist in the database, a new User record is created and returned.

@@ -9,10 +9,16 @@ class PlaylistsController < ApplicationController
 
     @playlist.populate(0.5, 30) if @playlist.size == 0
     @location.update_weather_data
-    
+
     render :show
   end
-  
+
+  def play_songs
+    @playlist = current_user.playlist
+    @playlist.play_songs
+    puts "PLAYING"
+  end
+
   def index
     @playlists = Playlist.all
   end
