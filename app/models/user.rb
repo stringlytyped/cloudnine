@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[spotify]
   rolify
-  
+
   has_one :playlist, dependent: :destroy
   has_one :location
   has_many :mood_ratings, dependent: :destroy
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     if target_valence
       max_valence = target_valence + 0.25
       min_valence = target_valence - 0.25
-      
+
       max_valence = 1 if max_valence > 1
       min_valence = 0 if min_valence < 0
     else
@@ -68,7 +68,7 @@ class User < ApplicationRecord
 
     seed_track_ids = self.random_top_tracks.map { |track| track.spotify_id }
 
-    spotify_tracks = 
+    spotify_tracks =
       RSpotify::Recommendations.generate(
         limit: 100,
         seed_tracks: seed_track_ids,
@@ -82,6 +82,23 @@ class User < ApplicationRecord
     Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
   end
 
+  def play_songs()
+    spotify_user = self.to_rspotify_user
+    player = spotify_user.player
+    tracks = recommended_tracks(0.7)
+
+    track_ids = []
+    track_id_string = ""
+
+    for track in tracks
+      track_id_string.concat("spotify:track:")
+      track_id_string.concat(track.spotify_id)
+      track_ids.append(track_id_string)
+      track_id_string = ""
+    end
+    player.play_tracks(nil, track_ids)
+
+  end
   ##
   # Given an OmniAuth authentication hash, finds and returns the relevant User record.
   # If the User does not exist in the database, a new User record is created and returned.
