@@ -1,0 +1,11 @@
+<h1>Preferences</h1>
+
+<%= flash_messages %>
+
+<%= form_with method: "put" do %>
+  <div>
+    <%= label_tag :city, "City/town:"  %>
+    <%= text_field_tag :city, @city, placeholder: "E.g. Berlin, DE" %>
+  </div>
+  <%= submit_tag("Save") %>
+<% end %>

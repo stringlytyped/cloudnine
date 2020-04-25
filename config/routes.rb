@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :playlists
-
   get '/playlist', to: 'playlists#show_mine'
+
+  get '/preferences', to: 'preferences#edit'
+  put '/preferences', to: 'preferences#update'
 
 end

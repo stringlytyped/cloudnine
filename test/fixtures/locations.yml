@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  open_weather_id: MyString
+  utc_offset: 1
+  sunrise: 2020-04-24 12:41:50
+  sunset: 2020-04-24 12:41:50
+  condition_id: MyString
+  condition_description: MyString
+  condition_icon: MyString
+  temperature: 1.5
+  feel_like: 1.5
+  humidity: 1.5
+  wind_speed: 1.5
+  cloud_cover: 1.5
+  rainfall_1h: 1.5
+  rainfall_3h: 1.5
+  snowfall_1h: 1.5
+  snowfall_3h: 1.5
+
+two:
+  name: MyString
+  open_weather_id: MyString
+  utc_offset: 1
+  sunrise: 2020-04-24 12:41:50
+  sunset: 2020-04-24 12:41:50
+  condition_id: MyString
+  condition_description: MyString
+  condition_icon: MyString
+  temperature: 1.5
+  feel_like: 1.5
+  humidity: 1.5
+  wind_speed: 1.5
+  cloud_cover: 1.5
+  rainfall_1h: 1.5
+  rainfall_3h: 1.5
+  snowfall_1h: 1.5
+  snowfall_3h: 1.5
