@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
     @location = current_user.location
 
     @playlist.populate(0.5, 30) if @playlist.size == 0
-    @location.update_weather_data
+    @location.update_weather_data if @location
     
     render :show
   end
