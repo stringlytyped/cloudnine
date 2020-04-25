@@ -63,3 +63,7 @@ gem 'active_model_serializers'
 gem 'rspotify'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails', '~> 4.3.5'
+
+# Charts for user mood history
+gem 'chartkick'
+gem 'groupdate'
