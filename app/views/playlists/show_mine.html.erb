@@ -10,6 +10,8 @@
 
 <h2>My playlist</h2>
 
+<input type="button" value="Play songs" onclick="location.href='@Url.Action("play_songs", "PlaylistsController")'" />
+
 <table>
   <tbody>
     <% @playlist.tracks.each do |track| %>
