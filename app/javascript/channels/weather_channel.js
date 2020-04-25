@@ -1,14 +1,17 @@
 import consumer from './consumer'
 import $ from 'jquery'
 
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
 
-  var location_id = $('[data-js-weather]').attr('data-js-weather')
+  if ($('[data-js-weather]').length) {
+    var location_id = $('[data-js-weather]').attr('data-js-weather')
+    console.log('subscribed!')
 
-  consumer.subscriptions.create({ channel: 'WeatherChannel', location_id: location_id }, {
-    received(data) {
-      $('[data-js-weather]').replaceWith(data)
-    }
-  })
+    consumer.subscriptions.create({ channel: 'WeatherChannel', location_id: location_id }, {
+      received(data) {
+        $('[data-js-weather]').replaceWith(data)
+      }
+    })
+  }
 
 })
