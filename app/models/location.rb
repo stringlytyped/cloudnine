@@ -3,6 +3,8 @@ require 'open_weather'
 class Location < ApplicationRecord
   has_many :users
 
+  after_update_commit :broadcast_update
+
   ##
   # Given a city/town name, returns a Location record to represent the given city/town and the weather data associated therewith, provided by the OpenWeather API.
   #
@@ -37,14 +39,23 @@ class Location < ApplicationRecord
   end
 
   ##
+  # Updates the weather data for the Location by fetching the latest from the OpenWeather API (regardless of how long its been since the last update). The updated data is saved to the database.
+  #
+  # @return [Location]
+  def update_weather_data!
+    resp = OpenWeather.fetch_current_data(id: open_weather_id)
+    set_weather_data(resp)
+    save
+    self
+  end
+
+  ##
   # Updates the weather data for the Location by fetching the latest from the OpenWeather API if it has been more than 15 minutes since the last update. The updated data is saved to the database.
   #
   # @return [Location]
   def update_weather_data
     if updated_at.nil? || updated_at < 15.minutes.ago
-      resp = OpenWeather.fetch_current_data(id: open_weather_id)
-      set_weather_data(resp)
-      save
+      update_weather_data!
     end
     self
   end
@@ -73,6 +84,17 @@ class Location < ApplicationRecord
       snowfall_3h: api_resp.dig("snow", "3h") || 0
     }
     self
+  end
+
+  private
+
+  ##
+  # Broadcast the Location to subscribed clients (as a background job).
+  #
+  # @return [true]
+  def broadcast_update
+    WeatherBroadcastJob.perform_later(self)
+    true
   end
     
 end
