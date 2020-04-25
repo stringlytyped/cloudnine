@@ -8,7 +8,6 @@ class User < ApplicationRecord
   
   has_one :playlist, dependent: :destroy
   has_one :location
-  has_many :moods, dependent: :destroy
 
   before_create :build_default_playlist
 

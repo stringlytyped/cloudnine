@@ -19,6 +19,3 @@ require("channels")
 //= require bootstrap-sprockets
 //= require bootstrap-dropdown
 //= require jquery
-// Charts for user's mood history
-require("chartkick")
-require("chart.js")
