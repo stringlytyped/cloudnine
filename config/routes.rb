@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :moods
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'dashboard#index'
@@ -9,10 +8,13 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :playlists
   get '/playlist', to: 'playlists#show_mine'
+  resources :playlists
 
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
+
+  get '/charts', to: 'mood_ratings#index_mine'
+  post '/mood-ratings', to: 'mood_ratings#create'
 
 end
