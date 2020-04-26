@@ -22,28 +22,28 @@
             </button>
             <a class="navbar-brand" href="/">Cloudnine</a>
           </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <% if user_signed_in? %>
-                <ul class="nav navbar-nav">
-                  <li><a href="/playlist">My playlist</a></li>
-                </ul>
-              <% end %>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <% if user_signed_in? %>
-                      <li><%= link_to "Preferences", preferences_path %></li>
-                      <li role="separator" class="divider"></li>
-                      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                    <% else %>
-                      <li><%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path %></li>
-                    <% end %>
-                  </ul>
-                </li>
+          <div id="navbar" class="navbar-collapse collapse">
+            <% if user_signed_in? %>
+              <ul class="nav navbar-nav">
+                <li><a href="/playlist">My playlist</a></li>
+                <li><a href="/charts">Charts</a></li>
               </ul>
-            </div>
-
+            <% end %>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% if user_signed_in? %>
+                    <li><%= link_to "Preferences", preferences_path %></li>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+                  <% else %>
+                    <li><%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

@@ -1,0 +1,5 @@
+<%= flash_messages %>
+
+<h2>Mood History</h2>
+
+<%= line_chart @mood_ratings.pluck(:created_at, :value), min: -0.25, max: 1 %>

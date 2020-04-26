@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
   # load_and_authorize_resource
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   def show_mine
     @playlist = current_user.playlist
@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
     @playlist.populate(0.5, 30) if @playlist.size == 0
     @location.update_weather_data if @location
     
-    render :show
+    render :show_mine
   end
   
   def index
