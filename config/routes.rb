@@ -8,13 +8,10 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  get '/playlist', to: 'playlists#show_mine'
   resources :playlists
+  get '/playlist', to: 'playlists#show_mine'
 
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
-
-  get '/charts', to: 'mood_ratings#index_mine'
-  post '/mood-ratings', to: 'mood_ratings#create'
 
 end

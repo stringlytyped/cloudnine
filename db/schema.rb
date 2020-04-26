@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_154431) do
+ActiveRecord::Schema.define(version: 2020_04_24_114150) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "user_id"
@@ -35,14 +35,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_154431) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["open_weather_id"], name: "index_locations_on_open_weather_id", unique: true
     t.index ["user_id"], name: "index_locations_on_user_id"
-  end
-
-  create_table "mood_ratings", force: :cascade do |t|
-    t.integer "user_id"
-    t.float "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_mood_ratings_on_user_id"
   end
 
   create_table "playlists", force: :cascade do |t|
