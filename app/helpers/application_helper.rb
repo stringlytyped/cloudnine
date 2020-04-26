@@ -3,7 +3,7 @@ module ApplicationHelper
       { success: 'alert-success', error: 'alert-danger', notice: 'alert-success', warning: 'alert-warning',
         danger: 'alert-danger', alert: 'alert-danger' }[alert.to_sym]
     end
-  
+
     def flash_messages(_opts = {})
       flash.each do |msg_type, message|
         concat(content_tag(:div, message, class: "alert #{boostrap_class(msg_type.to_sym)} fade in") do
