@@ -13,11 +13,23 @@ class PlaylistsController < ApplicationController
     render :show_mine
   end
 
-  def play_songs
-    @playlist = current_user.playlist
-    @playlist.play_songs
-    puts "PLAYING"
+  def play_songs()
+    spotify_user = self.to_rspotify_user
+    player = spotify_user.player
+    tracks = @playlist
+
+    track_ids = []
+    track_id_string = ""
+
+    for track in tracks
+      track_id_string.concat("spotify:track:")
+      track_id_string.concat(track.spotify_id)
+      track_ids.append(track_id_string)
+      track_id_string = ""
+    end
+    player.play_tracks(nil, track_ids)
   end
+
 
   def index
     @playlists = Playlist.all
