@@ -13,11 +13,6 @@ class PlaylistsController < ApplicationController
     render :show
   end
 
-  def play_songs
-    @playlist = current_user.playlist
-    @playlist.play_songs
-    puts "PLAYING"
-  end
 
   def index
     @playlists = Playlist.all

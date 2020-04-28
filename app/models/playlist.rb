@@ -105,22 +105,6 @@ class Playlist < ApplicationRecord
     end
   end
 
-  def play_songs()
-    spotify_user = self.to_rspotify_user
-    player = spotify_user.player
-    tracks = spotify_user.recommended_tracks(0.7)
-
-    track_ids = []
-    track_id_string = ""
-
-    for track in tracks
-      track_id_string.concat("spotify:track:")
-      track_id_string.concat(track.spotify_id)
-      track_ids.append(track_id_string)
-      track_id_string = ""
-    end
-    player.play_tracks(nil, track_ids)
-  end
 
 
 
