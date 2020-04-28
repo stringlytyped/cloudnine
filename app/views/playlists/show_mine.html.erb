@@ -1,5 +1,14 @@
 <%= flash_messages %>
 
+<%  track_ids = [] %>
+<%  track_id_string = "" %>
+<%  @playlist.tracks.each do |track| %>
+<%    track_id_string.concat(track.spotify_id) %>
+<%    track_id_string.concat("spotify:track:") %>
+<%    track_ids.append(track_id_string) %>
+<%    track_id_string = "" %>
+<%  end %>
+
 <head>
   <title>Spotify Web Playback SDK Quick Start Tutorial</title>
 </head>
@@ -10,7 +19,7 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQApMHqDWrm8YyOv2T85gz36eBT_uuFzTJA5PPvbn2uL59KsHMVAzHOa5-Zauo1yv8ek7iYZ0f8PY5mCuNr7vzFqHKiGZFdzTWIxCLu318qTuFudSXxQ1SfrovjRkDwXKca-KLSezFuMdLSgpZ4zC1G1jW877IUWPKaY';
+      const token = 'BQAKMLs41GFYogFh0IVDa56KNCZyF6r0PZKXJomRQBmKvvadG9PMp4o71_82ycvmKHESyp99nCBcb6lpKct9rZfIjFfux4PsVKsBi7Yox7la6Y3mJ3OsB9o1fGoGBV8b99os0S3rFRmkv-cXOcL5mw7C5A7rMJnQYTNS';
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -25,19 +34,49 @@
       // Playback status updates
       player.addListener('player_state_changed', state => { console.log(state); });
 
-      // Ready
-      player.addListener('ready', ({ device_id }) => {
-        console.log('Ready with Device ID', device_id);
-      });
-
       // Not Ready
       player.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
       });
 
-      // Connect to the player!
-      player.connect();
-    };
+
+      // Ready
+      player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id);
+
+
+      const play = ({
+        spotify_uri,
+        playerInstance: {
+          _options: {
+            getOAuthToken,
+            id
+          }
+        }
+      }) => {
+        getOAuthToken(access_token => {
+          fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ uris: [spotify_uri] }),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${access_token}`
+            },
+          });
+        });
+      };
+
+      play({
+        playerInstance: player,
+        spotify_uri: <%= track_ids%>,
+      });
+    });
+
+    // Connect to the player!
+    player.connect();
+
+  };
+
   </script>
 </body>
 
