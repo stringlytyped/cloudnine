@@ -3,8 +3,8 @@
 <%  track_ids = [] %>
 <%  track_id_string = "" %>
 <%  @playlist.tracks.each do |track| %>
-<%    track_id_string.concat(track.spotify_id) %>
 <%    track_id_string.concat("spotify:track:") %>
+<%    track_id_string.concat(track.spotify_id) %>
 <%    track_ids.append(track_id_string) %>
 <%    track_id_string = "" %>
 <%  end %>
@@ -68,7 +68,7 @@
 
       play({
         playerInstance: player,
-        spotify_uri: <%= track_ids%>,
+        spotify_uri: <% track_ids %>,
       });
     });
 
@@ -112,7 +112,7 @@
 <dl>
   <dt>Number of tracks</dt>
   <dd><%= @playlist.size %></dd>
-
+  <dd><%= track_ids %></dd>
   <dt>Average valence</dt>
   <dd><%= @playlist.avg_valence %></dd>
 
