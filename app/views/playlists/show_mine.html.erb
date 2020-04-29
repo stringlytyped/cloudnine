@@ -19,7 +19,7 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQAKMLs41GFYogFh0IVDa56KNCZyF6r0PZKXJomRQBmKvvadG9PMp4o71_82ycvmKHESyp99nCBcb6lpKct9rZfIjFfux4PsVKsBi7Yox7la6Y3mJ3OsB9o1fGoGBV8b99os0S3rFRmkv-cXOcL5mw7C5A7rMJnQYTNS';
+      const token = 'BQC6-LyaaBlt0FAsdoZA7zli_BKNM-xZ7jUThSbsmJgX9KY6cNIBFEac3-ZgAlveTuy2DcGtFZ7-aA1TqhbCqVOI8Zy1NazqByXof9K7aaqH4kzIoUhziEiSZ4nLaLbUw3jP6S_nG8JfU-RekIP_J5x4MSaP6llh5wCV';
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -39,44 +39,70 @@
         console.log('Device ID has gone offline', device_id);
       });
 
-
       // Ready
       player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
 
+        document.getElementById("playButton").addEventListener("click", function(){
 
-      const play = ({
-        spotify_uri,
-        playerInstance: {
-          _options: {
-            getOAuthToken,
-            id
-          }
-        }
-      }) => {
-        getOAuthToken(access_token => {
-          fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-            method: 'PUT',
-            body: JSON.stringify({ uris: [spotify_uri] }),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${access_token}`
-            },
+          const play = ({
+            spotify_uri,
+            playerInstance: {
+              _options: {
+                getOAuthToken,
+                id
+              }
+            }
+          }) => {
+            getOAuthToken(access_token => {
+              fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ uris: spotify_uri }),
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${access_token}`
+                },
+              });
+            });
+          };
+
+          var myJsArray = <%=raw track_ids%>;
+
+          play({
+            playerInstance: player,
+            spotify_uri: myJsArray,
           });
-        });
-      };
-
-      var myJsArray = <%=raw track_ids%>;
-
-      play({
-        playerInstance: player,
-        spotify_uri: myJsArray,
       });
+
+      document.getElementById("pauseButton").addEventListener("click", function(){
+
+        const pause = ({
+          playerInstance: {
+            _options: {
+              getOAuthToken,
+              id
+            }
+          }
+        }) => {
+          getOAuthToken(access_token => {
+            fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`
+              },
+            });
+          });
+        };
+
+        pause({
+          playerInstance: player,
+        });
     });
 
+    });
     // Connect to the player!
     player.connect();
-
   };
 
   </script>
@@ -92,7 +118,8 @@
 
 <h2>My playlist</h2>
 
-<input type="button" value="Play songs"/>
+<button id="playButton">Play playlist</button>
+<button id="pauseButton">Pause playlist</button>
 
 
 
@@ -114,7 +141,6 @@
 <dl>
   <dt>Number of tracks</dt>
   <dd><%= @playlist.size %></dd>
-  <dd><%= track_ids %></dd>
   <dt>Average valence</dt>
   <dd><%= @playlist.avg_valence %></dd>
 
