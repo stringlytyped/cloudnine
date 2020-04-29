@@ -13,7 +13,6 @@ class PlaylistsController < ApplicationController
     render :show
   end
 
-
   def index
     @playlists = Playlist.all
   end
