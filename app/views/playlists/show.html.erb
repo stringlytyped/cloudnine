@@ -19,7 +19,8 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQC6-LyaaBlt0FAsdoZA7zli_BKNM-xZ7jUThSbsmJgX9KY6cNIBFEac3-ZgAlveTuy2DcGtFZ7-aA1TqhbCqVOI8Zy1NazqByXof9K7aaqH4kzIoUhziEiSZ4nLaLbUw3jP6S_nG8JfU-RekIP_J5x4MSaP6llh5wCV';
+      const token = 'BQCz0qd2xjzp_vgubbiyzkDoB0_BvlLgPxMzt2K3RpcLhKs56b01DSb2iW65ysuOlIM59MfCww0jhkJOvtELUiEqezZ-WBtejfUA1r25t8Y9ouPSR2U1J3oKXo7s69siCqkMfXyC2xcJ3bl7xOiC_kY5xie1P0ywdD2i65XnSQOs1eMjoGmrTro';
+      var offset_value = 0;
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -47,6 +48,7 @@
 
           const play = ({
             spotify_uri,
+            offset,
             playerInstance: {
               _options: {
                 getOAuthToken,
@@ -57,7 +59,7 @@
             getOAuthToken(access_token => {
               fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ uris: spotify_uri }),
+                body: JSON.stringify({ uris: spotify_uri, offset: { position: offset_value},}),
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${access_token}`
@@ -71,6 +73,7 @@
           play({
             playerInstance: player,
             spotify_uri: myJsArray,
+            offset: offset_value,
           });
       });
 
@@ -92,6 +95,21 @@
                 'Authorization': `Bearer ${access_token}`
               },
             });
+          });
+          player.getCurrentState().then(state => {
+            if (!state) {
+              console.error('User is not playing music through the Web Playback SDK');
+              return;
+            }
+
+            let {
+              current_track,
+            } = state.track_window;
+
+            console.log('Currently Playing', current_track.uri);
+            var myJsArray = <%=raw track_ids%>;
+            offset_value = myJsArray.indexOf(current_track.uri);
+            console.log('offset', offset_value);
           });
         };
 
