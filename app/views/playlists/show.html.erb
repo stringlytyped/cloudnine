@@ -10,16 +10,15 @@
 <%  end %>
 
 <head>
-  <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+
 </head>
 <body>
-  <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
-  <h2>Open your console log: <code>View > Developer > JavaScript Console</code></h2>
+
 
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQCz0qd2xjzp_vgubbiyzkDoB0_BvlLgPxMzt2K3RpcLhKs56b01DSb2iW65ysuOlIM59MfCww0jhkJOvtELUiEqezZ-WBtejfUA1r25t8Y9ouPSR2U1J3oKXo7s69siCqkMfXyC2xcJ3bl7xOiC_kY5xie1P0ywdD2i65XnSQOs1eMjoGmrTro';
+      const token = 'BQAbb-2DURzNlCMA_d5stF6cI0AUPB24ARr-Icb2oexj3yZjvZiYSl2G1vxlz8Fq4NUkTKx2YNhe3nMl5iKAXivp7n519tJNSNQdKNjCHsOhZZiKGdEpW9xuYSwAKgyBneO4Io3sl6hCZlzpCjuOJTfaCccBdMSq-g6v';
       var offset_value = 0;
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
@@ -44,7 +43,7 @@
       player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
 
-        document.getElementById("playButton").addEventListener("click", function(){
+        document.getElementById("play_button").addEventListener("click", function(){
 
           const play = ({
             spotify_uri,
@@ -77,7 +76,7 @@
           });
       });
 
-      document.getElementById("pauseButton").addEventListener("click", function(){
+      document.getElementById("pause_button").addEventListener("click", function(){
 
         const pause = ({
           playerInstance: {
@@ -132,8 +131,8 @@
 
 <h2>My playlist</h2>
 
-<button id="playButton">Play playlist</button>
-<button id="pauseButton">Pause playlist</button>
+<button id="play_button">Play playlist</button>
+<button id="pause_button">Pause playlist</button>
 
 <table>
   <tbody>
