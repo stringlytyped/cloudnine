@@ -16,10 +16,6 @@ require("player")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-//= require bootstrap-sprockets
-//= require bootstrap-dropdown
-//= require jquery
-
 // Charts for user's mood history
 require("chartkick")
 require("chart.js")
