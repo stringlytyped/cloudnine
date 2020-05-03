@@ -1,5 +1,32 @@
-<div style="font-size: 32px">
-  <%= link_to "🙂", mood_ratings_path(value: 1), method: :post %>
-  <%= link_to "😐", mood_ratings_path(value: 0.5), method: :post %>
-  <%= link_to "🙁", mood_ratings_path(value: 0), method: :post %>
+<div class="mood-rater" data-js-mood-rater>
+  <%= link_to mood_ratings_path(value: 1), method: :post, class: "mood-rater_happy", data_js_happy: "" do %>
+    <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(2 2)">
+        <circle stroke-width="3" cx="20" cy="20" r="20" fill="none"/>
+        <path d="M12.549 24.314s7.451 6.029 14.902 0" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.51" cy="16.078" r="2.745" stroke="none"/>
+        <circle cx="26.275" cy="16.078" r="2.745" stroke="none"/>
+      </g>
+    </svg>
+  <% end %>
+  <%= link_to mood_ratings_path(value: 0.5), method: :post, class: "mood-rater_neutral", data_js_neutral: "" do %>
+    <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(2 2)">
+        <circle stroke-width="3" cx="20" cy="20" r="20" fill="none"/>
+        <path d="M12.549 25.882h14.902" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.51" cy="16.078" r="2.745" stroke="none"/>
+        <circle cx="26.275" cy="16.078" r="2.745" stroke="none"/>
+      </g>
+    </svg>
+  <% end %>
+  <%= link_to mood_ratings_path(value: 0), method: :post, class: "mood-rater_sad", data_js_sad: "" do %>
+    <svg width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(2 2)">
+        <circle stroke-width="3" cx="20" cy="20" r="20" fill="none"/>
+        <path d="M27.451 26.993s-7.451-6.029-14.902 0" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.51" cy="16.078" r="2.745" stroke="none"/>
+        <circle cx="26.275" cy="16.078" r="2.745" stroke="none"/>
+      </g>
+    </svg>
+  <% end %>
 </div>

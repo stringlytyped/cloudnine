@@ -1,0 +1,12 @@
+.mood-rater {
+  a:link, a:visited {
+    display: inline-block; // allows transform property to be used below
+    text-decoration: none; // remove underline that appears by default for links
+    fill: black; // make the eyes of the face black
+    stroke: black; // make the outline of the face and the mouth black
+  }
+
+  a:hover {
+    transform: translateY(-8px); // moves face up by 8px
+  }
+}
