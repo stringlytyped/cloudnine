@@ -1,0 +1,18 @@
+<table class="table-box">
+  <tbody >
+  <tr class="table-row table-head">
+        <td class="table-cell first-cell"></td>
+        <td class="table-cell second-cell">Title</td>
+        <td class="table-cell">Artist</td>
+        <td class="table-cell last-cell">Album</td> 
+      </tr>
+    <% @playlist.tracks.each do |track| %>
+      <tr class="table-row">
+        <td class="table-cell first-cell"><%= image_tag(track.image, size: 45) %></td>
+        <td class="table-cell second-cell"><%= track.name %></td>
+        <td class="table-cell"><%= track.artist %></td>
+        <td class="table-cell last-cell"><%= track.album %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>

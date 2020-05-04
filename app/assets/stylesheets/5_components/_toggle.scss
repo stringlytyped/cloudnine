@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .switch {
+    margin: 100px;
+    width: 275px;
+    height: 50px;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border-radius: 30px;
+    border: 2px solid #ff278c;
+  }
+  
+  .slider:before {
+    z-index: 1;
+    position: absolute;
+    content: "Playlist";
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+  
+    height: 26px;
+    width: 60px;
+    background-color: #ff278c;
+    transition: 0.5s;
+    border-radius: 30px;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(121px);
+    content: "Charts";
+  }
+  
+  label {
+    position: absolute;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .onbtn {
+    bottom: 15px;
+    left: 35px;
+    color: #ff278c;
+  }
+  
+  .offbtn {
+    bottom: 15px;
+    right: 35px;
+    color: #ff278c;
+  }
