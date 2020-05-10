@@ -4,52 +4,63 @@
   }
   
   .table-box {
-    margin: 50px auto;
+    margin: 300px auto;
   }
   
   .table-row {
     display: table;
     width: 1000px; //80%;
-    margin: 10px auto;
+    margin: 0px auto;
     font-family: sans-serif;
     background: transparent;
+    border-bottom: 1px solid #9c9595b7;
     padding: 12px 0;
-    color: #555;
-    font-size: 13px;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 50, 0.3);
+    // color: #555;
+    font-size: 17px;
+    // box-shadow: 0 1px 4px 0 rgba(0, 0, 50, 0.3);
   }
   
   .table-cell {
     display: table-cell;
     width: 5%;
     text-align: center;
-    padding: 4px 0;
-    border-right: 1px solid #d6d4d4;
+    padding: 0px;
+    
     vertical-align: middle;
   }
   
   .table-head {
-    background: #1b7b88;
-    box-shadow: none;
-    color: #fff;
+    //background: #1b7b88;
+    // box-shadow: none;
+    color:  #1b7b88;
     font-weight: 600;
+    border-bottom: 3px solid #1b7b88;
+
   }
   
   .table-head .table-cell {
-    border-right: none;
+    // border-right: none;
+    border-bottom: none;
+  }
+
+  .table-head .second-cell {
+    padding-left: 40px;
+
   }
   
   .last-cell {
-    border-right: none;
+    //border-right: none;
   }
   
   .first-cell {
     text-align: left;
     padding-left: 10px;
-    padding-right: 10px;
-    border-right: none;
+    padding-right: 1px;
+    width: 1%;
   }
   
   .second-cell{
     text-align: left;
+    font-weight: 600;
   }
+
