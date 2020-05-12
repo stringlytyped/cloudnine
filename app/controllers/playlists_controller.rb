@@ -13,6 +13,10 @@ class PlaylistsController < ApplicationController
     render :show
   end
 
+  def repopulate
+    @playlist.repopulate(0.5,30)
+  end
+
   def index
     @playlists = Playlist.all
   end

@@ -10,6 +10,10 @@
 <%  end %>
 
 <head>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -18,13 +22,13 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQAbb-2DURzNlCMA_d5stF6cI0AUPB24ARr-Icb2oexj3yZjvZiYSl2G1vxlz8Fq4NUkTKx2YNhe3nMl5iKAXivp7n519tJNSNQdKNjCHsOhZZiKGdEpW9xuYSwAKgyBneO4Io3sl6hCZlzpCjuOJTfaCccBdMSq-g6v';
+      const token = 'BQCJBJ_dEU8H5_AXDUoYiVqSO2lWpgG1XAFWwHE23Zi25b-TzetglfyV5ir9ebofeWMFVII7-aKFSKVWiPeDILRgG2ZMbDVZ1L2UIHWgvfNQxLeWESon4dhrDxRDR7wbKanKk7L9rsx2kj1K-A8ogw-BC3GlSz_CJGhK';
       var offset_value = 0;
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
       });
-
+      
       // Error handling
       player.addListener('initialization_error', ({ message }) => { console.error(message); });
       player.addListener('authentication_error', ({ message }) => { console.error(message); });
@@ -68,6 +72,8 @@
           };
 
           var myJsArray = <%=raw track_ids%>;
+
+          console.log(myJsArray[0]);
 
           play({
             playerInstance: player,
@@ -117,11 +123,23 @@
         });
     });
 
+    document.getElementById("refresh_button").addEventListener("click", function(){
+      console.log("clicked");
+      $.ajax({
+      async: false,
+      cache: false,
+      type: "POST",
+      url: '/playlist/repopulate',
+      data: {},
+      success: function (data) {
+      }});
+        response(customer);
+      });
     });
     // Connect to the player!
     player.connect();
-  };
 
+  };
   </script>
 </body>
 
@@ -133,6 +151,7 @@
 
 <button id="play_button">Play playlist</button>
 <button id="pause_button">Pause playlist</button>
+<button id="refresh_button">Refresh playlist</button>
 
 <table>
   <tbody>
@@ -154,7 +173,8 @@
   <dd><%= @playlist.size %></dd>
   <dt>Average valence</dt>
   <dd><%= @playlist.avg_valence %></dd>
-
+  <dt>Tracks</dt>
+  <dd><%=track_ids%></dd>
   <dt>Max valence</dt>
   <dd><%= @playlist.max_valence %></dd>
 
