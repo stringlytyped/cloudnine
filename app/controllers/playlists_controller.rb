@@ -13,7 +13,9 @@ class PlaylistsController < ApplicationController
     render :show_mine
   end
 
-
+  def repopulate
+    @playlist.repopulate(0.5,30)
+  end
 
   def index
     @playlists = Playlist.all
