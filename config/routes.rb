@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
 
-  post '/playlist/repopulate', to: 'playlists#repopulate'
+  get '/playlist/repopulate', to: 'playlists#repopulate'
 
 
 end

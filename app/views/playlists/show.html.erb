@@ -22,13 +22,13 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQCJBJ_dEU8H5_AXDUoYiVqSO2lWpgG1XAFWwHE23Zi25b-TzetglfyV5ir9ebofeWMFVII7-aKFSKVWiPeDILRgG2ZMbDVZ1L2UIHWgvfNQxLeWESon4dhrDxRDR7wbKanKk7L9rsx2kj1K-A8ogw-BC3GlSz_CJGhK';
+      const token = 'BQDVrVzoQyuwyzkf6cyCc5eXN1x5bcyJOYL6LKbIu3HcLEKtmkjmMj6YA_IxYMVddOlqYTARYzqdHefUny4K2xUkljAt2tcz0VFcaWCWY5FfP8IfEwWltvHCNYHYO838hfwhAM0fxuMXsi0o20mfGllyiUlIRdbLxJlsGfU-YOB0jwwrPehlYHE';
       var offset_value = 0;
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
       });
-      
+
       // Error handling
       player.addListener('initialization_error', ({ message }) => { console.error(message); });
       player.addListener('authentication_error', ({ message }) => { console.error(message); });
@@ -128,12 +128,12 @@
       $.ajax({
       async: false,
       cache: false,
-      type: "POST",
+      type: "GET",
       url: '/playlist/repopulate',
       data: {},
       success: function (data) {
       }});
-        response(customer);
+      location.reload();
       });
     });
     // Connect to the player!
