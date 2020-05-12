@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/charts', to: 'mood_ratings#index_mine'
   post '/mood-ratings', to: 'mood_ratings#create'
-  post '/playlist/repopulate', to: 'playlists#repopulate'
+  get '/playlist/repopulate', to: 'playlists#repopulate'
 
 
 end

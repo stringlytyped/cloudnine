@@ -14,6 +14,7 @@ class PlaylistsController < ApplicationController
   end
 
   def repopulate
+    @playlist = current_user.playlist
     @playlist.repopulate(0.5,30)
   end
 
