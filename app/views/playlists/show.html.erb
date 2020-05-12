@@ -22,8 +22,9 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQDVrVzoQyuwyzkf6cyCc5eXN1x5bcyJOYL6LKbIu3HcLEKtmkjmMj6YA_IxYMVddOlqYTARYzqdHefUny4K2xUkljAt2tcz0VFcaWCWY5FfP8IfEwWltvHCNYHYO838hfwhAM0fxuMXsi0o20mfGllyiUlIRdbLxJlsGfU-YOB0jwwrPehlYHE';
+      const token = 'BQD6nGIgRAL7iaB3WXi4w27QVsBB6imrufySMjsBAmVUg0U8rgkfniWVstlrOONxVF-yzp6Ata9cucbNTmJCp0Yo5opS3uO-8JC36W18SmSAIjekkMNH6WXmTpRK8HvrSFykwPUHa7FkHn76OWhA47gL3xoVb5HneGwOW6lKdgXUjuoc4522nSg';
       var offset_value = 0;
+      var position = 0;
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -52,6 +53,7 @@
           const play = ({
             spotify_uri,
             offset,
+            position_ms,
             playerInstance: {
               _options: {
                 getOAuthToken,
@@ -62,7 +64,7 @@
             getOAuthToken(access_token => {
               fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
                 method: 'PUT',
-                body: JSON.stringify({ uris: spotify_uri, offset: { position: offset_value},}),
+                body: JSON.stringify({ uris: spotify_uri, offset: { position: offset_value},position_ms: position}),
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': `Bearer ${access_token}`
@@ -79,6 +81,7 @@
             playerInstance: player,
             spotify_uri: myJsArray,
             offset: offset_value,
+            positon_ms: position,
           });
       });
 
@@ -111,10 +114,14 @@
               current_track,
             } = state.track_window;
 
+
             console.log('Currently Playing', current_track.uri);
             var myJsArray = <%=raw track_ids%>;
             offset_value = myJsArray.indexOf(current_track.uri);
+            position = state.position;
             console.log('offset', offset_value);
+            console.log('position', position);
+
           });
         };
 
