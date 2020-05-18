@@ -8,13 +8,9 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :playlists
   get '/playlist', to: 'playlists#show_mine'
+  put '/playlist/refresh', to: 'playlists#refresh'
 
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
-
-  get '/playlist/repopulate', to: 'playlists#repopulate'
-
-
 end

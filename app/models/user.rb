@@ -81,6 +81,22 @@ class User < ApplicationRecord
     Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
   end
 
+  ##
+  # Refreshes the OAuth token for the user.
+  #
+  # @return [nil]
+  def refresh_token
+    spotify_user = self.to_rspotify_user
+
+    # Issue any request to the Spotify API to trigger a token refresh
+    spotify_user.recently_played(limit: 1)
+
+    # Save new token
+    credentials_json = spotify_user.to_hash["credentials"].to_json
+    self.credentials_json = credentials_json
+    nil
+  end
+
 
   ##
   # Given an OmniAuth authentication hash, finds and returns the relevant User record.
