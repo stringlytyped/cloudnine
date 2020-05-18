@@ -9,14 +9,13 @@ Rails.application.routes.draw do
   end
 
   get '/playlist', to: 'playlists#show_mine'
-  resources :playlists
+  put '/playlist/refresh', to: 'playlists#refresh'
 
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
 
   get '/charts', to: 'mood_ratings#index_mine'
   post '/mood-ratings', to: 'mood_ratings#create'
-  get '/playlist/repopulate', to: 'playlists#repopulate'
 
 
 end
