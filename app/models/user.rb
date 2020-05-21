@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[spotify]
   rolify
-  
+
   has_one :playlist, dependent: :destroy
   has_one :location
   has_many :mood_ratings, dependent: :destroy
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     if target_valence
       max_valence = target_valence + 0.25
       min_valence = target_valence - 0.25
-      
+
       max_valence = 1 if max_valence > 1
       min_valence = 0 if min_valence < 0
     else
@@ -68,7 +68,7 @@ class User < ApplicationRecord
 
     seed_track_ids = self.random_top_tracks.map { |track| track.spotify_id }
 
-    spotify_tracks = 
+    spotify_tracks =
       RSpotify::Recommendations.generate(
         limit: 100,
         seed_tracks: seed_track_ids,
@@ -81,6 +81,23 @@ class User < ApplicationRecord
 
     Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
   end
+
+  ##
+  # Refreshes the OAuth token for the user.
+  #
+  # @return [nil]
+  def refresh_token
+    spotify_user = self.to_rspotify_user
+
+    # Issue any request to the Spotify API to trigger a token refresh
+    spotify_user.recently_played(limit: 1)
+
+    # Save new token
+    credentials_json = spotify_user.to_hash["credentials"].to_json
+    self.credentials_json = credentials_json
+    nil
+  end
+
 
   ##
   # Given an OmniAuth authentication hash, finds and returns the relevant User record.

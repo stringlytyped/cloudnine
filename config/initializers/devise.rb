@@ -269,6 +269,9 @@ Devise.setup do |config|
                     user-read-recently-played
                     ugc-image-upload
                     streaming
+                    user-read-email
+                    user-read-private
+                    user-modify-playback-state
                   ).join(' ')
 
   # ==> Warden configuration

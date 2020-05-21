@@ -48,7 +48,7 @@ class Playlist < ApplicationRecord
   end
 
   ##
-  # Adds songs to the playlist based on the user's listening history and the +target_valence+. The average valence of the songs added to the playlist should be roughly equal to +target_valence+. 
+  # Adds songs to the playlist based on the user's listening history and the +target_valence+. The average valence of the songs added to the playlist should be roughly equal to +target_valence+.
   #
   # @param [Float] target_valence The target average valence of the added songs
   # @param [Integer] num_songs The number of songs to add to the playlist
@@ -83,7 +83,7 @@ class Playlist < ApplicationRecord
   end
 
   ##
-  # Clears playlist and repopulates it with songs based on the user's listening history and the +target_valence+. The average valence of the songs in the playlist should be roughly equal to +target_valence+. 
+  # Clears playlist and repopulates it with songs based on the user's listening history and the +target_valence+. The average valence of the songs in the playlist should be roughly equal to +target_valence+.
   #
   # @param [Float] target_valence The target average valence of the songs in playlist
   # @param [Integer] num_songs The number of songs to add to the playlist
