@@ -4,21 +4,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[spotify]
-  rolify
-
+  
   has_one :playlist, dependent: :destroy
   has_one :location
   has_many :mood_ratings, dependent: :destroy
 
   before_create :build_default_playlist
-
-  def admin?
-    has_role?(:admin)
-  end
-
-  def standard?
-    has_role?(:standard)
-  end
 
   ##
   # Returns the user's OAuth credentials as a Hash which can be used to authorize requests to the Spotify API.
