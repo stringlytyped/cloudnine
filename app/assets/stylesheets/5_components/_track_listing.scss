@@ -1,0 +1,51 @@
+.track-listing {
+  border-collapse: collapse;
+  width: 100%;
+
+  img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  td, th {
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  th {
+    font-size: 18px;
+    font-weight: 600;
+    color: #146396;
+    border-bottom: 2px solid #146396;
+  }
+
+  td:first-child {
+    width: 40px;
+    position: relative;
+  }
+
+  tr:hover td:first-child:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 23px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid white;
+  }
+
+  td:nth-child(2) {
+    font-weight: 600;
+  }
+
+  td {
+    font-size: 16px;
+    border-bottom: 1px solid #B5C8D4;
+    cursor: pointer;
+  }
+}

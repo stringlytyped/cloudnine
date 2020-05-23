@@ -16,18 +16,7 @@
 <div data-js-player="<%= @current_user.credentials["token"] %>">
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <div data-js-error></div>
-  <table>
-    <tbody>
-      <% @playlist.tracks.each do |track| %>
-        <tr data-js-spotify-track="<%= track.spotify_id %>">
-          <td><%= image_tag(track.image, size: 45) %></td>
-          <td><%= track.name %></td>
-          <td><%= track.artist %></td>
-          <td><%= track.album %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'track_listing' %>
   <button data-js-prev>Prev</button>
   <button data-js-play>Play/pause</button>
   <button data-js-next>Next</button>
@@ -39,7 +28,6 @@
   </div>
 </div>
 
-<%= render 'playlist_table' %>
 <%= render 'audio_player'%>
 
 <h3>Playlist stats</h3>
