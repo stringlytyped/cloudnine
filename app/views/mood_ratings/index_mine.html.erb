@@ -2,13 +2,4 @@
 
 <h2>Mood History</h2>
 
-
-<%= area_chart @mood_ratings.group_by_minute(:created_at).maximum(:value), min: 0, max: 1 %>
-
-
-<h2>There are a total of <%= User.count %> users registered.</h2>
-
-<h2>You have rated your mood <%= @mood_ratings.count %> times so far.</h2>
-
-
-<h2>We have proudly generated <%= Playlist.count %> playlists so far.</h2>
+<%= line_chart @mood_ratings.pluck(:created_at, :value), min: -0.25, max: 1.25 %>

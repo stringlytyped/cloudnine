@@ -1,0 +1,14 @@
+<%= flash_messages %>
+
+<h1>Admin Analytics</h1>
+
+<h2>Average mood per day</h2>
+<%= line_chart @mood_ratings.group_by_day(:created_at).average(:value), min: 0, max: 1 %>
+
+<h2>User registrations per week</h2>
+<%= line_chart User.group_by_week(:created_at).count %>
+<p>There are a total of <%= User.count %> users registered.</p>
+
+<h2>Number of mood entries recorded per day</h2>
+<%= column_chart @mood_ratings.group_by_day(:created_at).count %>
+<p><%= @mood_ratings.count %> mood entries recorded so far.</p>
