@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   get '/charts', to: 'mood_ratings#index_mine'
   post '/mood-ratings', to: 'mood_ratings#create'
-
+  get '/admin', to: 'admin#index'
 
 end
