@@ -26,7 +26,9 @@
               <ul class="nav navbar-nav">
                 <li><a href="/playlist">My playlist</a></li>
                 <li><a href="/charts">Charts</a></li>
-                <li><a href="/admin_menu">Admin menu</a></li>
+                <% if current_user.admin? %>
+                  <li><a href="/admin">Admin stats</a></li>
+                <% end %>
               </ul>
             <% end %>
             <ul class="nav navbar-nav navbar-right">
