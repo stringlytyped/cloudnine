@@ -72,6 +72,7 @@ window.onSpotifyWebPlaybackSDKReady = function() {
 
     spotifyPlayer.addListener('ready', function(info) {
       console.log('Spotify player ready!')
+      showError("test")
       deviceId = info.device_id
     })
 
@@ -106,7 +107,7 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   function showError(userMsg, consoleMsg = false) {
     $error.show()
     $error.text(userMsg)
-    $error.delay(10000).fadeOut(300)
+    $error.delay(11000).hide(0)
     if (consoleMsg) {
       console.log(consoleMsg)
     }

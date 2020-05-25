@@ -11,11 +11,10 @@
 
 <h2>My playlist</h2>
 
-<%= button_to "Refresh playlist", playlist_refresh_path, :method => :put %>
-
 <div data-js-player="<%= @current_user.credentials["token"] %>">
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <div data-js-error></div>
+  <%= button_to "Refresh playlist", playlist_refresh_path, :method => :put %>
+  <div class="flash -error -hide" data-js-error></div>
   <%= render 'track_listing' %>
   <%= render 'control_bar' %>
 </div>

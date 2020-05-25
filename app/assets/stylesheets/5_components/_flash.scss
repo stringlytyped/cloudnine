@@ -1,0 +1,28 @@
+.flash {
+  background-color: #61D3AE;
+  color: white;
+  padding: 0 15px;
+  border-radius: 3px;
+  animation: 10s fadeout 1s;
+  opacity: 0;
+  height: 0;
+
+  @keyframes fadeout {
+    0%     { opacity: 1; height: auto; padding: 10px 15px; }
+    75%    { opacity: 1; height: auto; padding: 10px 15px; }
+    95%    { opacity: 0; height: auto; padding: 10px 15px; }
+    100%   { opacity: 0; height: 0; padding: 0 15px; }
+  }
+
+  &.-error {
+    background-color: #D36161;
+  }
+
+  &.-warning {
+    background-color: #D38B61;
+  }
+
+  &.-hide {
+    display: none;
+  }
+}
