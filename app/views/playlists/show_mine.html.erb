@@ -1,45 +1,45 @@
 <%= flash_messages %>
 
-<h2>Weather</h2>
+<div class="playlist-view">
 
-<%= render 'weather', location: @location %>
+  <div class="playlist-view_weather-n-mood">
+    <%= render 'weather', location: @location %>
+    <%= render 'mood_rater' %>
+  </div>
 
-<h2>Rate your mood</h2>
+  <%= render 'toggle' %>
 
-<%= render 'mood_rater' %>
-<%= render 'toggle' %>
+  <div data-js-player="<%= @current_user.credentials["token"] %>">
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <%= button_tag "Play", class: "button", data: { icon: "play", js_play_playlist: "" } %>
+    <%= link_to "Refresh", playlist_refresh_path, method: :put, class: "button", data: { icon: "refresh" } %>
+    <%# link_to "Export to Spotify", playlist_refresh_path, method: :put, class: "button", data: { icon: "export" } %>
+    <div class="flash -error -hide" data-js-error></div>
+    <%= render 'track_listing' %>
+    <%= render 'control_bar' %>
+  </div>
 
-<h2>My playlist</h2>
+  <% if Rails.env.development? %>
 
-<div data-js-player="<%= @current_user.credentials["token"] %>">
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <%= button_tag "Play", class: "button", data: { icon: "play", js_play_playlist: "" } %>
-  <%= link_to "Refresh", playlist_refresh_path, method: :put, class: "button", data: { icon: "refresh" } %>
-  <%# link_to "Export to Spotify", playlist_refresh_path, method: :put, class: "button", data: { icon: "export" } %>
-  <div class="flash -error -hide" data-js-error></div>
-  <%= render 'track_listing' %>
-  <%= render 'control_bar' %>
+    <h3>Debug info</h3>
+
+    <dl>
+      <dt>Number of tracks</dt>
+      <dd><%= @playlist.size %></dd>
+
+      <dt>Average valence</dt>
+      <dd><%= @playlist.avg_valence %></dd>
+
+      <dt>Max valence</dt>
+      <dd><%= @playlist.max_valence %></dd>
+
+      <dt>Min valence</dt>
+      <dd><%= @playlist.min_valence %></dd>
+
+      <dt>Valence distribution</dt>
+      <dd><%= @playlist.valence_distribution.inspect %></dd>
+    </dl>
+
+  <% end %>
+
 </div>
-
-<% if Rails.env.development? %>
-
-  <h3>Debug info</h3>
-
-  <dl>
-    <dt>Number of tracks</dt>
-    <dd><%= @playlist.size %></dd>
-
-    <dt>Average valence</dt>
-    <dd><%= @playlist.avg_valence %></dd>
-
-    <dt>Max valence</dt>
-    <dd><%= @playlist.max_valence %></dd>
-
-    <dt>Min valence</dt>
-    <dd><%= @playlist.min_valence %></dd>
-
-    <dt>Valence distribution</dt>
-    <dd><%= @playlist.valence_distribution.inspect %></dd>
-  </dl>
-
-<% end %>

@@ -1,0 +1,19 @@
+.weather {
+  display: flex;
+
+  &_info {
+    font-size: 20px;
+    text-align: right;
+    margin-top: 45px;
+  }
+
+  &_condition {
+    font-size: 24px;
+    margin: 8px 0;
+  }
+  
+  &_icon {
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+}
