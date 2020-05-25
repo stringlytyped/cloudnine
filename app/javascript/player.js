@@ -7,13 +7,15 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   var $player = $('[data-js-player]')
   var $error = $('[data-js-error]', $player)
   var $tracks = $('[data-js-spotify-track]', $player)
+  var $controlBar = $('[data-js-control-bar]')
   var $playButton = $('[data-js-play]', $player)
+  var $pauseButton = $('[data-js-pause]', $player)
   var $prevButton = $('[data-js-prev]', $player)
   var $nextButton = $('[data-js-next]', $player)
   var $scrubber = $('[data-js-scrubber]', $player)
+  var $image = $('[data-js-image]', $player)
   var $title = $('[data-js-title]', $player)
-  var $artist = $('[data-js-artist]', $player)
-  var $album = $('[data-js-album]', $player)
+  var $albumInfo = $('[data-js-album-info]', $player)
 
   // Initialization
 
@@ -36,7 +38,15 @@ window.onSpotifyWebPlaybackSDKReady = function() {
     })
 
     $playButton.on('click', function() {
-      spotifyPlayer.togglePlay()
+      spotifyPlayer.resume()
+      $playButton.hide()
+      $pauseButton.show()
+    })
+
+    $pauseButton.on('click', function() {
+      spotifyPlayer.pause()
+      $playButton.show()
+      $pauseButton.hide()
     })
 
     $prevButton.on('click', function() {
@@ -140,8 +150,9 @@ window.onSpotifyWebPlaybackSDKReady = function() {
     spotifyPlayer.getCurrentState().then(state => {
       var track = state.track_window.current_track
       $title.text(track.name)
-      $artist.text(track.artists[0].name)
-      $album.text(track.album.name)
+      $albumInfo.text(track.artists[0].name + ' — ' + track.album.name)
+      $image.attr('src', track.album.images[0].url)
+      $controlBar.show()
     })
   }
 
