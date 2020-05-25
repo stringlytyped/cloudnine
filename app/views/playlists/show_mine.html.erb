@@ -21,21 +21,25 @@
   <%= render 'control_bar' %>
 </div>
 
-<h3>Playlist stats</h3>
+<% if Rails.env.development? %>
 
-<dl>
-  <dt>Number of tracks</dt>
-  <dd><%= @playlist.size %></dd>
+  <h3>Debug info</h3>
 
-  <dt>Average valence</dt>
-  <dd><%= @playlist.avg_valence %></dd>
+  <dl>
+    <dt>Number of tracks</dt>
+    <dd><%= @playlist.size %></dd>
 
-  <dt>Max valence</dt>
-  <dd><%= @playlist.max_valence %></dd>
+    <dt>Average valence</dt>
+    <dd><%= @playlist.avg_valence %></dd>
 
-  <dt>Min valence</dt>
-  <dd><%= @playlist.min_valence %></dd>
+    <dt>Max valence</dt>
+    <dd><%= @playlist.max_valence %></dd>
 
-  <dt>Valence distribution</dt>
-  <dd><%= @playlist.valence_distribution.inspect %></dd>
-</dl>
+    <dt>Min valence</dt>
+    <dd><%= @playlist.min_valence %></dd>
+
+    <dt>Valence distribution</dt>
+    <dd><%= @playlist.valence_distribution.inspect %></dd>
+  </dl>
+
+<% end %>
