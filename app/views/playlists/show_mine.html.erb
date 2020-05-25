@@ -13,7 +13,9 @@
 
 <div data-js-player="<%= @current_user.credentials["token"] %>">
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <%= button_to "Refresh playlist", playlist_refresh_path, :method => :put %>
+  <%= button_tag "Play", class: "button", data: { icon: "play", js_play_playlist: "" } %>
+  <%= link_to "Refresh", playlist_refresh_path, method: :put, class: "button", data: { icon: "refresh" } %>
+  <%# link_to "Export to Spotify", playlist_refresh_path, method: :put, class: "button", data: { icon: "export" } %>
   <div class="flash -error -hide" data-js-error></div>
   <%= render 'track_listing' %>
   <%= render 'control_bar' %>

@@ -5,6 +5,7 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   // Cached selectors
 
   var $player = $('[data-js-player]')
+  var $playPlaylistButton = $('[data-js-play-playlist]')
   var $error = $('[data-js-error]', $player)
   var $tracks = $('[data-js-spotify-track]', $player)
   var $controlBar = $('[data-js-control-bar]')
@@ -33,20 +34,20 @@ window.onSpotifyWebPlaybackSDKReady = function() {
 
     // Event handlers
 
+    $playPlaylistButton.on('click', function() {
+      playTrack($tracks.first().attr('data-js-spotify-track'))
+    })
+
     $tracks.on('click', function() {
       playTrack($(this).attr('data-js-spotify-track'))
     })
 
     $playButton.on('click', function() {
       spotifyPlayer.resume()
-      $playButton.hide()
-      $pauseButton.show()
     })
 
     $pauseButton.on('click', function() {
       spotifyPlayer.pause()
-      $playButton.show()
-      $pauseButton.hide()
     })
 
     $prevButton.on('click', function() {
@@ -79,8 +80,12 @@ window.onSpotifyWebPlaybackSDKReady = function() {
       if (!state.paused) {
         startScrubberUpdates()
         updateNowPlaying()
+        $playButton.hide()
+        $pauseButton.show()
       } else {
         stopScrubberUpdates()
+        $playButton.show()
+        $pauseButton.hide()
       }
     })
 

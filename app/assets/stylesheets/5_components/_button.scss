@@ -1,0 +1,52 @@
+.button {
+  display: inline-block;
+  background-color: white;
+  border: 2px solid #146396;
+  border-radius: 6px;
+  padding: 5px 10px;
+  color: #146396;
+  cursor: pointer;
+
+  &:link, &:visited {
+    color: #146396;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: #E4EEF3;
+  }
+
+  & + .button {
+    margin-left: 5px;
+  }
+
+  &[data-icon]::before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    height: 14px;
+    margin-right: 8px;
+  }
+
+  &[data-icon=play]::before {
+    content: '';
+    background-image: url('/assets/play_blue.svg');
+    background-size: 12px 14px;
+    width: 12px;
+  }
+
+  &[data-icon=refresh]::before {
+    content: '';
+    background-image: url('/assets/refresh.svg');
+    background-size: 19px 14px;
+    width: 19px;
+  }
+
+  &[data-icon=export]::before {
+    content: '';
+    background-image: url('/assets/export.svg');
+    background-size: 17px 14px;
+    width: 17px;
+  }
+}
