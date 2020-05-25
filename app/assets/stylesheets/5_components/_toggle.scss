@@ -1,62 +1,48 @@
+.toggle {
+  $padding: 5px 20px;
 
-  
-  .switch {
-    margin: 100px;
-    width: 275px;
-    height: 50px;
-  }
-  
-  .switch input {
+  display: inline-block;
+  border: 2px solid #61A6D3;
+  border-radius: 15px;
+  position: relative;
+
+  input {
     display: none;
   }
-  
-  .slider {
+
+  label {
+    display: inline-block;
+    padding: $padding;
+    color: #61A6D3;
+    cursor: pointer;
+  }
+
+  label:first-of-type::before {
+    content: '';
+    background-color: #61A6D3;
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    background-color: white;
-    border-radius: 30px;
-    border: 2px solid #ff278c;
+    padding: $padding;
+    z-index: -1;
+    border-radius: 13px;
   }
-  
-  .slider:before {
-    z-index: 1;
-    position: absolute;
-    content: "Playlist";
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 45px;
-    padding-right: 45px;
-  
-    height: 26px;
-    width: 60px;
-    background-color: #ff278c;
-    transition: 0.5s;
-    border-radius: 30px;
+
+  input:first-of-type:checked ~ label:first-of-type::before {
+    content: 'Playlist';
+    left: 0;
   }
-  
-  input:checked + .slider:before {
-    transform: translateX(121px);
-    content: "Charts";
+
+  input:last-of-type:checked ~ label:first-of-type::before {
+    content: 'Charts';
+    right: 0;
   }
-  
-  label {
-    position: absolute;
-    color: #fff;
-    font-weight: 600;
-    font-size: 20px;
+
+  input:first-of-type:checked ~ label:first-of-type {
+    color: white;
   }
-  
-  .onbtn {
-    bottom: 15px;
-    left: 35px;
-    color: #ff278c;
+
+  input:last-of-type:checked ~ label:last-of-type {
+    color: white;
   }
-  
-  .offbtn {
-    bottom: 15px;
-    right: 35px;
-    color: #ff278c;
-  }
+}
