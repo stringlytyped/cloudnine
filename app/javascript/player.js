@@ -72,7 +72,6 @@ window.onSpotifyWebPlaybackSDKReady = function() {
 
     spotifyPlayer.addListener('ready', function(info) {
       console.log('Spotify player ready!')
-      showError("test")
       deviceId = info.device_id
     })
 
