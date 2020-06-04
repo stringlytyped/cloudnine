@@ -4,16 +4,42 @@
   &_info {
     font-size: 20px;
     text-align: right;
-    margin-top: 45px;
+
+    @include respond-to("mobile-up") {
+      font-size: 16px;
+      margin-top: 25px;
+    }
+
+    @media screen and (min-width: 650px) {
+      font-size: 20px;
+      margin-top: 45px;
+    }
   }
 
   &_condition {
-    font-size: 24px;
-    margin: 8px 0;
+    font-size: 1.2em;
+
+    @include respond-to("mobile-up") {
+      margin: 4px 0;
+    }
+
+    @media screen and (min-width: 650px) {
+      margin: 8px 0;
+    }
   }
   
   &_icon {
     margin-left: 30px;
     margin-right: 10px;
+  }
+
+  &_icon img {
+    @include respond-to("mobile-up") {
+      width: 100px;
+    }
+
+    @media screen and (min-width: 650px) {
+      width: auto;
+    }
   }
 }

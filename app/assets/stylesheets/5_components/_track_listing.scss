@@ -24,6 +24,7 @@
 
   td:first-child {
     width: 40px;
+    max-width: 40px;
     position: relative;
   }
 
@@ -42,11 +43,36 @@
 
   td:nth-child(2) {
     font-weight: 600;
+    max-width: 100px;
   }
 
   td {
     font-size: 16px;
     border-bottom: 1px solid #B5C8D4;
     cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 0;
+    white-space: nowrap;
+  }
+
+  td:last-child, th:last-child {
+    @include respond-to("mobile-up") {
+      display: none;
+    }
+
+    @include respond-to("small-tablet-up") {
+      display: table-cell;
+    }
+  }
+
+  td:nth-last-child(2), th:nth-last-child(2) {
+    @include respond-to("mobile-up") {
+      display: none;
+    }
+
+    @media screen and (min-width: 432px) {
+      display: table-cell;
+    }
   }
 }

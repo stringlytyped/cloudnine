@@ -9,4 +9,15 @@
   a:hover {
     transform: translateY(-8px); // moves face up by 8px
   }
+
+  img {
+    @include respond-to("mobile-up") {
+      width: 38px;
+      height: auto;
+    }
+
+    @media screen and (min-width: 650px) {
+      width: auto;
+    }
+  }
 }
