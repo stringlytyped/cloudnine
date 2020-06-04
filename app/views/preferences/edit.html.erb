@@ -1,11 +1,13 @@
-<h1>Preferences</h1>
-
 <%= flash_messages %>
 
+<h1>Preferences</h1>
+<p><%= link_to "← Back to playlist", playlist_path %></p>
+
 <%= form_with method: "put" do %>
-  <div>
-    <%= label_tag :city, "City/town:"  %>
+  <div class="form-field">
+    <%= label_tag :city, "City/town:" %>
     <%= text_field_tag :city, @city, placeholder: "E.g. Berlin, DE" %>
+    <p class="form-field_help">Used to retrieve weather data for your location.</p>
   </div>
-  <%= submit_tag("Save") %>
+  <%= submit_tag "Save changes", class: "button" %>
 <% end %>

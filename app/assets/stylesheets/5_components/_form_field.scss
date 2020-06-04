@@ -1,0 +1,31 @@
+.form-field {
+  margin: 30px 0;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  &_help {
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    opacity: 0.7;
+  }
+
+  input[type=text] {
+    border: 0;
+    border-bottom: 2px solid rgb(179, 207, 226);
+    border-radius: 3px;
+    padding: 5px 10px;
+    max-width: 300px;
+    width: 100%;
+    font-size: 18px;
+  }
+
+  input[type=text]:focus {
+    border-bottom-color: #61A6D3;
+  }
+}
