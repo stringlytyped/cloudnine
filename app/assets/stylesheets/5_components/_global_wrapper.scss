@@ -1,5 +1,5 @@
 .global-wrapper {
   background-image: linear-gradient(-180deg, #DCF0EF 0%, #FFFFFF 100%);
   padding-top: 1px;
-  height: 100vh;
+  height: calc(100vh - 1px);
 }
