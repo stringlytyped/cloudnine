@@ -1,0 +1,50 @@
+.toggle {
+  $padding: 5px 20px;
+
+  display: inline-block;
+  border: 2px solid #61A6D3;
+  background-color: white;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
+
+  input {
+    display: none;
+  }
+
+  label {
+    display: inline-block;
+    padding: $padding;
+    color: #61A6D3;
+    cursor: pointer;
+  }
+
+  label:first-of-type::before {
+    content: '';
+    background-color: #61A6D3;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: $padding;
+    z-index: -1;
+    border-radius: 13px;
+  }
+
+  input:first-of-type:checked ~ label:first-of-type::before {
+    content: 'Playlist';
+    left: 0;
+  }
+
+  input:last-of-type:checked ~ label:first-of-type::before {
+    content: 'Charts';
+    right: 0;
+  }
+
+  input:first-of-type:checked ~ label:first-of-type {
+    color: white;
+  }
+
+  input:last-of-type:checked ~ label:last-of-type {
+    color: white;
+  }
+}

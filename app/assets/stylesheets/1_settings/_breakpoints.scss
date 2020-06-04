@@ -1,0 +1,10 @@
+// Breakpoints inspired by the Foundation CSS framework
+
+$breakpoints: (
+  "mobile-up": "screen", // Smallest phone screen are usually 320px wide, but this shouldn't be assumed
+  "small-tablet-up": "screen and (min-width: 544px)",
+  "tablet-up": "screen and (min-width: 768px)",
+  "large-tablet-up": "screen and (min-width: 896px)",
+  "desktop-up": "screen and (min-width: 1024px)",
+  "widescreen-up" : "screen and (min-width: 1216px)"
+);

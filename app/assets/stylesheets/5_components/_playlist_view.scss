@@ -1,0 +1,41 @@
+.playlist-view {
+  @include respond-to("mobile-up") {
+    margin-top: 45px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 650px) {
+    text-align: left;
+  }
+
+  @include respond-to("tablet-up") {
+    margin-top: 0;
+  }
+
+  &_weather-n-mood {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &_toggle {
+    position: relative;
+    top: 32px;
+    pointer-events: none;
+
+    @include respond-to("mobile-up") {
+      margin-bottom: 64px;
+      text-align: center;
+    }
+
+    @media screen and (min-width: 650px) {
+      margin-bottom: 0;
+      text-align: right;
+    }
+  }
+
+  &_toggle * {
+    pointer-events: all;
+  }
+}

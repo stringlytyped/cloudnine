@@ -1,0 +1,6 @@
+.chart-container {
+  // Required for chart to behave responsively
+  // See https://www.chartjs.org/docs/latest/general/responsive.html#important-note
+  position: relative;
+  width: 60vw;
+}

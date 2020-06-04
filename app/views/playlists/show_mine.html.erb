@@ -1,58 +1,53 @@
 <%= flash_messages %>
 
-<h2>Weather</h2>
+<div class="playlist-view" data-js-playlist-view>
 
-<%= render 'weather', location: @location %>
-
-<h2>Rate your mood</h2>
-
-<%= render 'mood_rater' %>
-
-<h2>My playlist</h2>
-
-<%= button_to "Refresh playlist", playlist_refresh_path, :method => :put %>
-
-<div data-js-player="<%= @current_user.credentials["token"] %>">
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  <div data-js-error></div>
-  <table>
-    <tbody>
-      <% @playlist.tracks.each do |track| %>
-        <tr data-js-spotify-track="<%= track.spotify_id %>">
-          <td><%= image_tag(track.image, size: 45) %></td>
-          <td><%= track.name %></td>
-          <td><%= track.artist %></td>
-          <td><%= track.album %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <button data-js-prev>Prev</button>
-  <button data-js-play>Play/pause</button>
-  <button data-js-next>Next</button>
-  <input type="range" min="1" max="1000" value="0" data-js-scrubber>
-  <div data-js-title></div>
-  <div>
-    <span data-js-artist></span> —
-    <span data-js-album></span>
+  <div class="playlist-view_weather-n-mood">
+    <%= render 'weather', location: @location %>
+    <%= render 'mood_rater' %>
   </div>
+
+  <div class="playlist-view_toggle">
+    <%= render 'toggle' %>
+  </div>
+
+  <div data-js-player="<%= @current_user.credentials["token"] %>">
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+    <div data-js-pane="playlist">
+    
+      <%= button_tag "Play", class: "button", data: { icon: "play", js_play_playlist: "" } %>
+      <%= link_to "Refresh", playlist_refresh_path, method: :put, class: "button", data: { icon: "refresh" } %>
+      <%# link_to "Export to Spotify", playlist_refresh_path, method: :put, class: "button", data: { icon: "export" } %>
+      <div class="flash -error -hide" data-js-error></div>
+      <%= render 'track_listing' %>
+
+      <% if Rails.env.development? %>
+        <h3>Debug info</h3>
+        <dl>
+          <dt>Number of tracks</dt>
+          <dd><%= @playlist.size %></dd>
+
+          <dt>Average valence</dt>
+          <dd><%= @playlist.avg_valence %></dd>
+
+          <dt>Max valence</dt>
+          <dd><%= @playlist.max_valence %></dd>
+
+          <dt>Min valence</dt>
+          <dd><%= @playlist.min_valence %></dd>
+
+          <dt>Valence distribution</dt>
+          <dd><%= @playlist.valence_distribution.inspect %></dd>
+        </dl>
+      <% end %>
+
+    </div>
+
+    <div data-js-pane="charts"></div>
+
+    <%= render 'control_bar' %>
+  </div>
+
 </div>
-
-<h3>Playlist stats</h3>
-
-<dl>
-  <dt>Number of tracks</dt>
-  <dd><%= @playlist.size %></dd>
-
-  <dt>Average valence</dt>
-  <dd><%= @playlist.avg_valence %></dd>
-
-  <dt>Max valence</dt>
-  <dd><%= @playlist.max_valence %></dd>
-
-  <dt>Min valence</dt>
-  <dd><%= @playlist.min_valence %></dd>
-
-  <dt>Valence distribution</dt>
-  <dd><%= @playlist.valence_distribution.inspect %></dd>
-</dl>

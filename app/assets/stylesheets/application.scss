@@ -10,41 +10,29 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
- 
- #main-container {
-   position: relative;
-   padding-top: 50px;
-   padding-bottom: 50px;
- }
- 
- .devise-container {
-   width: 345px;
-   padding-left: 15px;
- }
- 
- .product-block {
-   width: 750px;
- }
- 
- .btn {
-   text-decoration: none;
- }
- 
- body {
-   background: #f2f2f2;
- }
- 
- th {
-   background-color: #333333;
-   color: white;
- }
- 
- td {
-   background-color: #808080;
-   color: white;
- }
+
+@import '1_settings/breakpoints';
+@import '1_settings/colours';
+
+@import '2_tools/respond_to';
+
+@import '3_generic/normalize';
+
+@import '4_elements/text';
+
+@import '5_components/global_wrapper';
+@import '5_components/application_layout';
+@import '5_components/page_layout';
+@import '5_components/playlist_view';
+@import '5_components/mood_rater';
+@import '5_components/track_listing';
+@import '5_components/toggle';
+@import '5_components/control_bar';
+@import '5_components/flash';
+@import '5_components/button';
+@import '5_components/weather';
+@import '5_components/charts_view';
+@import '5_components/chart_container';
+@import '5_components/home_view';
+@import '5_components/form_field';

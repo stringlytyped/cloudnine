@@ -1,60 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cloudnine</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-top navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Cloudnine</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <% if user_signed_in? %>
-              <ul class="nav navbar-nav">
-                <li><a href="/playlist">My playlist</a></li>
-                <li><a href="/charts">Charts</a></li>
-                <% if current_user.admin? %>
-                  <li><a href="/admin">Admin stats</a></li>
-                <% end %>
-              </ul>
+<%= render layout: "layouts/skeleton" do %>
+  <div class="application-layout">
+    <header class="application-layout_sidebar">
+      <h1><img src="/assets/logo.svg" alt="Cloudnine"></h1>
+    </header>
+    <div class="application-layout_content">
+      <nav>
+        <ul>
+          <% if current_user.admin? %>
+            <li><a href="/admin">Admin stats</a></li>
+          <% end %>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          <li>
+            <%= link_to preferences_path, title: "Preferences" do %>
+              <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.753 0L7.506 2.968c-.25.074-.474.2-.698.324L3.84 2.045 2.045 3.84l1.247 2.968c-.125.25-.225.449-.324.698L0 8.753v2.494l2.968 1.247c.1.25.2.449.324.698L2.045 16.16l1.795 1.795 2.968-1.247c.224.1.449.225.698.324L8.753 20h2.494l1.247-2.968c.224-.1.474-.2.698-.324l2.968 1.247 1.795-1.795-1.247-2.968c.1-.224.225-.474.324-.698L20 11.247V8.753l-2.968-1.247a4.374 4.374 0 00-.324-.698l1.247-2.968-1.795-1.795-2.968 1.247c-.224-.1-.474-.225-.698-.324L11.247 0H8.753zM10 6.234c2.07 0 3.74 1.671 3.74 3.741 0 2.07-1.67 3.74-3.74 3.74-2.07 0-3.74-1.67-3.74-3.74 0-2.07 1.67-3.74 3.74-3.74z" fill-rule="nonzero"/>
+              </svg>
             <% end %>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <% if user_signed_in? %>
-                    <li><%= link_to "Preferences", preferences_path %></li>
-                    <li role="separator" class="divider"></li>
-                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                  <% else %>
-                    <li><%= link_to "Sign in with Spotify", user_spotify_omniauth_authorize_path %></li>
-                  <% end %>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div id="main-container" class="container">
-      <%= yield %>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <%= yield %>
+      </main>
     </div>
-    <!--Bootstrap script files, they come at the end of your body tag-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-</html>
+  </div>
+<% end %>

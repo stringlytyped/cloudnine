@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("playlist_view")
 require("player")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -15,10 +16,6 @@ require("player")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-//= require bootstrap-sprockets
-//= require bootstrap-dropdown
-//= require jquery
 
 // Charts for user's mood history
 require("chartkick")

@@ -5,15 +5,18 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   // Cached selectors
 
   var $player = $('[data-js-player]')
+  var $playPlaylistButton = $('[data-js-play-playlist]', $player)
   var $error = $('[data-js-error]', $player)
   var $tracks = $('[data-js-spotify-track]', $player)
+  var $controlBar = $('[data-js-control-bar]')
   var $playButton = $('[data-js-play]', $player)
+  var $pauseButton = $('[data-js-pause]', $player)
   var $prevButton = $('[data-js-prev]', $player)
   var $nextButton = $('[data-js-next]', $player)
   var $scrubber = $('[data-js-scrubber]', $player)
+  var $image = $('[data-js-image]', $player)
   var $title = $('[data-js-title]', $player)
-  var $artist = $('[data-js-artist]', $player)
-  var $album = $('[data-js-album]', $player)
+  var $albumInfo = $('[data-js-album-info]', $player)
 
   // Initialization
 
@@ -31,12 +34,20 @@ window.onSpotifyWebPlaybackSDKReady = function() {
 
     // Event handlers
 
+    $playPlaylistButton.on('click', function() {
+      playTrack($tracks.first().attr('data-js-spotify-track'))
+    })
+
     $tracks.on('click', function() {
       playTrack($(this).attr('data-js-spotify-track'))
     })
 
     $playButton.on('click', function() {
-      spotifyPlayer.togglePlay()
+      spotifyPlayer.resume()
+    })
+
+    $pauseButton.on('click', function() {
+      spotifyPlayer.pause()
     })
 
     $prevButton.on('click', function() {
@@ -69,8 +80,12 @@ window.onSpotifyWebPlaybackSDKReady = function() {
       if (!state.paused) {
         startScrubberUpdates()
         updateNowPlaying()
+        $playButton.hide()
+        $pauseButton.show()
       } else {
         stopScrubberUpdates()
+        $playButton.show()
+        $pauseButton.hide()
       }
     })
 
@@ -96,7 +111,7 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   function showError(userMsg, consoleMsg = false) {
     $error.show()
     $error.text(userMsg)
-    $error.delay(10000).fadeOut(300)
+    $error.delay(11000).hide(0)
     if (consoleMsg) {
       console.log(consoleMsg)
     }
@@ -140,8 +155,9 @@ window.onSpotifyWebPlaybackSDKReady = function() {
     spotifyPlayer.getCurrentState().then(state => {
       var track = state.track_window.current_track
       $title.text(track.name)
-      $artist.text(track.artists[0].name)
-      $album.text(track.album.name)
+      $albumInfo.text(track.artists[0].name + ' — ' + track.album.name)
+      $image.attr('src', track.album.images[0].url)
+      $controlBar.show()
     })
   }
 

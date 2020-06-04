@@ -1,0 +1,144 @@
+.control-bar {
+  display: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  border-top: 1px solid #DADADA;
+  box-shadow: 0 0 11px rgba(#656565, 0.22);
+
+  &_inner {
+    margin: 0 auto;
+    height: 84px;
+    position: relative;
+    max-width: 871px;
+  }
+
+  &_image {
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    top: 0;
+    left: 0;
+  }
+
+  &_track-info {
+    position: absolute;
+    top: 50%;
+    left: 84px;
+    transform: translateY(-50%);
+    padding-left: 20px;
+    box-sizing: border-box;
+    text-align: left;
+
+    @include respond-to("mobile-up") {
+      width: calc(100% - 250px);
+    }
+  
+    @include respond-to("tablet-up") {
+      width: calc(50% - 65px);
+    }
+  }
+
+  &_track-info div {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &_title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+
+  &_controls {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    @include respond-to("mobile-up") {
+      right: -30px;
+    }
+  
+    @include respond-to("tablet-up") {
+      right: auto;
+      left: calc(50% + 84px);
+    }
+  }
+
+  &_controls button {
+    text-indent: -10000px;
+    border: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    width: 24px;
+    height: 29px;
+    margin: 0 5px;
+  }
+
+  &_play {
+    background-image: url('/assets/play.svg');
+    display: none;
+  }
+
+  &_pause {
+    background-image: url('/assets/pause.svg');
+  }
+
+  &_prev {
+    background-image: url('/assets/prev.svg');
+  }
+
+  &_next {
+    background-image: url('/assets/prev.svg');
+    transform: rotate(180deg);
+  }
+
+  &_scrubber {
+    -webkit-appearance: none;
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 84px;
+    width: calc(100% - 84px);
+    height: 4px;
+  }
+
+  // Mixins are used below to apply common styles to webkit and mozilla pseudo-elements because comma-seperated selectors do not work for some reason
+
+  @mixin scrubber-thumb {
+    width: 20px;
+    height: 4px;
+    border: 0;
+    border-radius: 0;
+    background: #61A6D3;
+  }
+
+  &_scrubber::-moz-range-thumb {
+    @include scrubber-thumb;
+  }
+
+  &_scrubber::-webkit-slider-thumb {
+    @include scrubber-thumb;
+    -webkit-appearance: none;
+  }
+
+  @mixin scrubber-track {
+    height: 4px;
+    background: #E4E4E4;
+    border-radius: 0;
+    border: 0;
+  }
+
+  &_scrubber::-moz-range-track {
+    @include scrubber-track;
+  }
+
+  &_scrubber::-webkit-slider-runnable-track {
+    @include scrubber-track;
+  }
+}

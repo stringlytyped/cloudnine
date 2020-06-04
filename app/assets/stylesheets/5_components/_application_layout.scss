@@ -1,0 +1,79 @@
+.application-layout {
+  max-width: 1055px;
+  margin: 30px auto;
+  margin-bottom: 150px;
+
+  @include respond-to("mobile-up") {
+    display: block;
+  }
+
+  @include respond-to("tablet-up") {
+    display: flex;
+  }
+
+  &_sidebar {
+    margin: 0 30px;
+    flex-shrink: 0;
+
+    @include respond-to("mobile-up") {
+      height: 10px;
+    }
+  
+    @include respond-to("tablet-up") {
+      height: auto;
+    }
+  }
+
+  &_sidebar img {
+    @include respond-to("mobile-up") {
+      height: 80px;
+      position: absolute;
+      top: 25px;
+      left: 30px;
+    }
+  
+    @include respond-to("tablet-up") {
+      height: auto;
+      position: static;
+    }
+  }
+
+  &_content {
+    margin: 0 30px;
+    flex-grow: 1;
+  }
+
+  &_content > nav {
+    text-align: right;
+    height: 10px;
+  }
+
+  &_content > nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  &_content > nav li {
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  &_content > nav li + li {
+    margin-left: 15px;
+  }
+
+  &_content > nav a:link, &_content > nav a:visited {
+    color: #146396;
+    fill: #146396;
+  }
+
+  &_content > nav a:hover {
+    color: black;
+    fill: black;
+    text-decoration: none;
+  }
+
+  &_content > nav svg {
+    vertical-align: bottom;
+  }
+}

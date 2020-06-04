@@ -1,5 +1,11 @@
-<div style="font-size: 32px">
-  <%= link_to "🙂", mood_ratings_path(value: 1), method: :post %>
-  <%= link_to "😐", mood_ratings_path(value: 0.5), method: :post %>
-  <%= link_to "🙁", mood_ratings_path(value: 0), method: :post %>
+<div class="mood-rater" data-js-mood-rater>
+  <%= link_to mood_ratings_path(value: 1), method: :post, class: "mood-rater_happy", data_js_happy: "" do %>
+    <img src="/assets/mood_happy.svg" alt="Happy">
+  <% end %>
+  <%= link_to mood_ratings_path(value: 0.5), method: :post, class: "mood-rater_neutral", data_js_neutral: "" do %>
+    <img src="/assets/mood_neutral.svg" alt="Neutral">
+  <% end %>
+  <%= link_to mood_ratings_path(value: 0), method: :post, class: "mood-rater_sad", data_js_sad: "" do %>
+    <img src="/assets/mood_sad.svg" alt="Neutral">
+  <% end %>
 </div>

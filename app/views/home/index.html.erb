@@ -1,0 +1,13 @@
+<%= flash_messages %>
+
+<div class="home-view">
+	<img src="/assets/logo.svg" alt="Cloudnine">
+	<h1>music to <span>lift</span> your spirits</h1>
+	<p>Cloudnine generates personalised playlists based on your <span>mood</span> and the <span>weather</span>.<p>
+	<% if user_signed_in? %>
+		<p><%= link_to "Continue to your playlist", playlist_path, class: "home-view_cta" %></p>
+	<% else %>
+		<p><%= link_to "Connect your Spotify account", user_spotify_omniauth_authorize_path, class: "home-view_cta" %></p>
+	<% end %>
+	<p>😄 + 🌦 = 🎶</p>
+</div>
