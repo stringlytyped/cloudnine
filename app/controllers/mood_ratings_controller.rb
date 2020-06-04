@@ -3,6 +3,7 @@ class MoodRatingsController < ApplicationController
   
   def index_mine
     @mood_ratings = current_user.mood_ratings
+    render layout: false
   end
 
   def create
@@ -11,7 +12,7 @@ class MoodRatingsController < ApplicationController
     if @mood_rating.save
       redirect_to playlist_path, notice: 'Mood was successfully recorded.'
     else
-      render :new
+      redirect_to playlist_path, error: 'Mood could not be recorded.'
     end
   end
 

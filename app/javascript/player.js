@@ -5,7 +5,7 @@ window.onSpotifyWebPlaybackSDKReady = function() {
   // Cached selectors
 
   var $player = $('[data-js-player]')
-  var $playPlaylistButton = $('[data-js-play-playlist]')
+  var $playPlaylistButton = $('[data-js-play-playlist]', $player)
   var $error = $('[data-js-error]', $player)
   var $tracks = $('[data-js-spotify-track]', $player)
   var $controlBar = $('[data-js-control-bar]')

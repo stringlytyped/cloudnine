@@ -3,8 +3,10 @@
 
   display: inline-block;
   border: 2px solid #61A6D3;
+  background-color: white;
   border-radius: 15px;
   position: relative;
+  z-index: 1;
 
   input {
     display: none;

@@ -2,5 +2,17 @@
   &_weather-n-mood {
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  &_toggle {
+    position: relative;
+    top: 32px;
+    text-align: right;
+    pointer-events: none;
+  }
+
+  &_toggle * {
+    pointer-events: all;
   }
 }

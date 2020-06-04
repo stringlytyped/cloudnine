@@ -2,3 +2,13 @@ body {
   font-family: 'Exo', sans-serif;
   font-weight: 500;
 }
+
+a:link, a:visited {
+  color: #146396;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #61A6D3;
+  text-decoration: underline;
+}
