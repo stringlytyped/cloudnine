@@ -1,0 +1,63 @@
+.home-view {
+  text-align: center;
+
+  h1 {
+    font-size: 64px;
+    margin-top: 55px;
+  }
+
+  h1 span {
+    display: inline-block;
+    animation: 3s float infinite alternate;
+    opacity: 0.7;
+  }
+
+  @keyframes float {
+    0%     { transform: translateY(10px) rotate(6deg); color: black; }
+    10%     { transform: translateY(10px) rotate(6deg); color: black; }
+    90%    { transform: translateY(-20px) rotate(-10deg); color: #61A6D3; }
+    100%    { transform: translateY(-20px) rotate(-10deg); color: #61A6D3; }
+  }
+
+  p {
+    font-size: 26px;
+    line-height: 1.4;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  p span {
+    position: relative;
+    color: #61A6D3;
+  }
+
+  p span:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 5px;
+    right: 3px;
+    height: 5px;
+    border: 2px solid #61A6D3;
+    border-color: #61A6D3 transparent transparent transparent;
+    border-radius: 50%;
+    transform: rotate(-3deg);
+  }
+
+  &_cta:link, &_cta:visited {
+    display: inline-block;
+    padding: 15px 25px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: #1DB954;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+
+  &_cta:hover {
+    background-color: #1ED760;
+    text-decoration: none;
+  }
+}
