@@ -30,12 +30,19 @@ class User < ApplicationRecord
   ##
   # Fetches a number of random tracks (defaults to 5) from the user's top Spotify tracks. User must be authenticated.
   #
+  # If there is not sufficient listening history for the user, tracks from Spotify's Today's Top Hits playlist are returned instead of the user's top tracks.
+  #
   # @param [Integer] quantity The number of tracks to attempt to return. May return fewer if greater than 0 or if the Spotify user does not have much listening history.
   #
   # @return [Array<Track>]
   def random_top_tracks(quantity=5)
     spotify_user = self.to_rspotify_user
     spotify_top_tracks = spotify_user.top_tracks(limit: 50)
+
+    if spotify_top_tracks.length == 0
+      spotify_top_tracks = RSpotify::Playlist.find("spotify", "37i9dQZF1DXcBWIGoYBM5M").tracks
+    end
+
     spotify_random_tracks = spotify_top_tracks.sample(quantity)
     spotify_random_tracks.map { |spotify_track| Track.new_from_spotify_track(spotify_track) }
   end
