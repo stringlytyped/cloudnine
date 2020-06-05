@@ -7,7 +7,7 @@
 	<% if user_signed_in? %>
 		<p><%= link_to "Continue to your playlist", playlist_path, class: "home-view_cta" %></p>
 	<% else %>
-		<p><%= link_to "Connect your Spotify account", user_spotify_omniauth_authorize_path, class: "home-view_cta" %></p>
+		<p><%= link_to "Connect your Spotify account", "#{user_spotify_omniauth_authorize_path}?show_dialog=true", class: "home-view_cta" %></p>
 	<% end %>
 	<p>😄 + 🌦 = 🎶</p>
 </div>

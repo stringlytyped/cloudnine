@@ -1,13 +1,23 @@
 <%= flash_messages %>
 
-<h1>Preferences</h1>
-<p><%= link_to "← Back to playlist", playlist_path %></p>
+<div class="preferences-view">
 
-<%= form_with method: "put" do %>
-  <div class="form-field">
-    <%= label_tag :city, "City/town:" %>
-    <%= text_field_tag :city, @city, placeholder: "E.g. Berlin, DE" %>
-    <p class="form-field_help">Used to retrieve weather data for your location.</p>
-  </div>
-  <%= submit_tag "Save changes", class: "button" %>
-<% end %>
+  <h1>Preferences</h1>
+  <p><%= link_to "← Back to playlist", playlist_path %></p>
+
+  <%= form_with method: "put" do %>
+    <div class="form-field">
+      <%= label_tag :city, "City/town:" %>
+      <%= text_field_tag :city, @city, placeholder: "E.g. Berlin, DE" %>
+      <p class="form-field_help">Used to retrieve weather data for your location.</p>
+    </div>
+    <%= submit_tag "Save changes", class: "button" %>
+  <% end %>
+
+  <section class="preferences-view_delete">
+    <h2>Delete account</h2>
+    <p>If you'd like to disconnect your Spotify account and <strong>delete all data</strong> associated with the account including <strong>your playlist</strong> and <strong>mood ratings</strong>, click the button below.</p>
+    <%= button_to "Disconnect and delete data", user_path(current_user), method: :delete, class: "button -warning", data: { confirm: "Are you sure you wish to delete your account? This action cannot be reversed." } %>
+  </section>
+
+</div>

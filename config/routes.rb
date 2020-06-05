@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/preferences', to: 'preferences#edit'
   put '/preferences', to: 'preferences#update'
+  delete '/users/:id', to: 'preferences#delete_user', as: 'user'
 
   get '/charts', to: 'mood_ratings#index_mine'
   post '/mood-ratings', to: 'mood_ratings#create'

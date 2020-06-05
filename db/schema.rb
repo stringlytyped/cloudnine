@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2020_04_24_154431) do
 
   create_table "locations", force: :cascade do |t|
-    t.integer "user_id"
     t.string "name"
     t.string "open_weather_id"
     t.integer "utc_offset"
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_154431) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["open_weather_id"], name: "index_locations_on_open_weather_id", unique: true
-    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "mood_ratings", force: :cascade do |t|
@@ -81,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_154431) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
