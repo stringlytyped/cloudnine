@@ -107,6 +107,14 @@ class Playlist < ApplicationRecord
     end
   end
 
+  ##
+  # Destroy all playlists where the user has been inactive for 30 days or more.
+  def self.destroy_stale
+    User.where("updated_at < ?", 30.days.ago).each do |user|
+      user.playlist.destroy
+    end
+  end
+
   private
 
   ##
