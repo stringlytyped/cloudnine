@@ -28,13 +28,15 @@ class User < ApplicationRecord
   end
 
   ##
-  # Fetches 5 random tracks from the user's top Spotify tracks. User must be authenticated.
+  # Fetches a number of random tracks (defaults to 5) from the user's top Spotify tracks. User must be authenticated.
+  #
+  # @param [Integer] quantity The number of tracks to attempt to return. May return fewer if greater than 0 or if the Spotify user does not have much listening history.
   #
   # @return [Array<Track>]
-  def random_top_tracks
+  def random_top_tracks(quantity=5)
     spotify_user = self.to_rspotify_user
     spotify_top_tracks = spotify_user.top_tracks(limit: 50)
-    spotify_random_tracks = spotify_top_tracks.sample(5)
+    spotify_random_tracks = spotify_top_tracks.sample(quantity)
     spotify_random_tracks.map { |spotify_track| Track.new_from_spotify_track(spotify_track) }
   end
 
@@ -48,11 +50,8 @@ class User < ApplicationRecord
   # @return [Array<Track>]
   def recommended_tracks(target_valence=nil)
     if target_valence
-      max_valence = target_valence + 0.25
-      min_valence = target_valence - 0.25
-
-      max_valence = 1 if max_valence > 1
-      min_valence = 0 if min_valence < 0
+      max_valence = (target_valence + 0.25).clamp(0, 1)
+      min_valence = (target_valence - 0.25).clamp(0, 1)
     else
       max_valence = 1; min_valence = 0
     end
@@ -71,6 +70,19 @@ class User < ApplicationRecord
     audio_features_objects = RSpotify::AudioFeatures.find(track_ids)
 
     Track.new_from_spotify_tracks(spotify_tracks, audio_features_objects)
+  end
+
+  ##
+  # Calculates a baseline valence value for the user based on their listening history by finding the average valence of the user's top 50 tracks.
+  #
+  # @return [Float]
+  def valence_baseline
+    top_tracks = random_top_tracks(50)
+    top_track_ids = top_tracks.map { |track| track.spotify_id }
+    audio_features_objects = RSpotify::AudioFeatures.find(top_track_ids)
+
+    total_valence = audio_features_objects.reduce(0) { |sum, n| sum + n.valence } 
+    total_valence / audio_features_objects.length
   end
 
   ##
