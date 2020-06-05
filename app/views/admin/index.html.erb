@@ -1,14 +1,45 @@
 <%= flash_messages %>
 
-<h1>Admin Analytics</h1>
+<h1>Admin analytics</h1>
+<p><%= link_to "← Back to playlist", playlist_path %></p>
 
-<h2>Average mood per day</h2>
-<%= line_chart @mood_ratings.group_by_day(:created_at).average(:value), min: 0, max: 1 %>
+<h2>Average daily change in mood ★</h2>
+<p>This is our key success metric. It measures the average change in mood across users each day.</p>
+<p>If the application is working to elevate people's mood, we should consistently see postive values for this metric.</p>
+<h3>Notes:</h3>
+<ul>
+  <li><p>To find the change in mood for a user, this metric uses the first mood recorded for the day and the last mood recorded for the day.</p></li>
+  <li><p>Only users that recorded their mood at least twice on a given day are included in the calculation.</p></li>
+  <li><p>For this metric, "day" refers to the date in the user's local time.</p></li>
+  <li><p>Because many people go to sleep after midnight, any mood ratings recorded before 3 AM local time are considered part of the previous day's numbers.</p></li>
+  <li><p>A positive value indicates that, on average, users' moods increased by the end of the day.</p></li>
+  <li><p>A negative value indicates that moods decreased.</p></li>
+</ul>
+<div class="chart-container">
+  <%= line_chart @avg_daily_change, min: -1, max: 1 %>
+</div>
+
+<h2>Average mood rating per day</h2>
+<p>This is a simple average of all the mood ratings recorded each day. Can be used as an indicator of how happy users are on a given day.</p>
+<h3>Notes:</h3>
+<ul>
+  <li><p>Each day's average may include a different subset of users (as not all users will have recorded a mood each day).</p></li>
+  <li><p>For this metric, "day" refers to the date in UTC. The user's local time is not taken in account.</p></li>
+</ul>
+<div class="chart-container">
+  <%= line_chart @mood_ratings.group_by_day(:created_at).average(:value), min: 0, max: 1 %>
+</div>
 
 <h2>User registrations per week</h2>
-<%= line_chart User.group_by_week(:created_at).count %>
+<p>Can be used as an indicator of how well the "sales" funnel is working.</p>
+<div class="chart-container">
+  <%= line_chart User.group_by_week(:created_at).count %>
+</div>
 <p>There are a total of <%= User.count %> users registered.</p>
 
 <h2>Number of mood entries recorded per day</h2>
-<%= column_chart @mood_ratings.group_by_day(:created_at).count %>
+<p>Can be used as an indicator of application usage.</p>
+<div class="chart-container">
+  <%= column_chart @mood_ratings.group_by_day(:created_at).count %>
+</div>
 <p><%= @mood_ratings.count %> mood entries recorded so far.</p>
