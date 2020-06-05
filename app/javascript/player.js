@@ -128,8 +128,11 @@ window.onSpotifyWebPlaybackSDKReady = function() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-    }).catch(() => {
-      showError('You must have Spotify Premium to play songs. However, you can still export your playlist to Spotify by clicking the "Export" button.')
+    })
+    .then(response => {
+      if (response.status == 403) {
+        showError('You must have Spotify Premium to play songs.')
+      }
     })
   }
 
