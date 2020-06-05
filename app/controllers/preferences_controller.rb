@@ -9,6 +9,7 @@ class PreferencesController < ApplicationController
     
     if location.save
       current_user.location = location
+      current_user.save
       flash[:notice] = 'Your preferences were updated successfully.'
       redirect_to action: :edit
     else

@@ -1,8 +1,6 @@
 class CreateLocations < ActiveRecord::Migration[6.0]
   def change
     create_table :locations do |t|
-      t.references :user
-      
       t.string :name
       t.string :open_weather_id
       t.integer :utc_offset
@@ -22,6 +20,10 @@ class CreateLocations < ActiveRecord::Migration[6.0]
       t.float :snowfall_3h
 
       t.timestamps
+    end
+
+    change_table :users do |t|
+      t.references :location
     end
 
     add_index :locations, :open_weather_id, unique: true

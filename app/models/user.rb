@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[spotify]
   
   has_one :playlist, dependent: :destroy
-  has_one :location
+  belongs_to :location
   has_many :mood_ratings, dependent: :destroy
 
   before_create :build_default_playlist
