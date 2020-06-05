@@ -80,7 +80,7 @@ class Playlist < ApplicationRecord
       weights_sum -= track_weights.select{|t, w| t.id == track.id }.values[0]
 
       self.tracks << track
-      track_weights.delete(track)
+      track_weights.delete_if {|t, w| t.id == track.id }
     end
   end
 
