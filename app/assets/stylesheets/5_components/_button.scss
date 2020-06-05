@@ -16,6 +16,19 @@
     background-color: #E4EEF3;
   }
 
+  &.-warning {
+    border-color: #e34d4d;
+    color: #e34d4d;
+  }
+
+  &.-warning:link, &.-warning:visited {
+    color: #e34d4d;
+  }
+
+  &.-warning:hover {
+    background-color: #f9eded;
+  }
+
   & + .button {
     margin-left: 5px;
   }

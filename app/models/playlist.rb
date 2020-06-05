@@ -2,6 +2,8 @@ class Playlist < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :tracks
 
+  before_destroy :clear
+
   ##
   # Returns the number of tracks in the playlist
   #
