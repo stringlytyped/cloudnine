@@ -10,7 +10,7 @@
   <tbody>
     <% @playlist.tracks.each do |track| %>
       <tr data-js-spotify-track="<%= track.spotify_id %>">
-        <td><%= image_tag(track.image, size: 40) %></td>
+        <td><%= image_tag(track.image, size: 40, alt: "") %></td>
         <td><%= track.name %></td>
         <td><%= track.artist.truncate(30) %></td>
         <td><%= track.album.truncate(30) %></td> 
