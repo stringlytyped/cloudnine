@@ -61,7 +61,7 @@ class Playlist < ApplicationRecord
 
     # Assign each track a weight, add it to the track_weights hash and calculate the sum of all the weights
     candidate_tracks.each do |track|
-      # Calculate the weight of each track by finding the percentage difference between the target_valenence and the track's valence
+      # Calculate the weight of each track by finding the percentage difference between the target_valence and the track's valence
       diff = target_valence - track.valence
       percent_diff = diff.abs / ((target_valence + track.valence) / 2)
       percent_diff = 1 if percent_diff > 1

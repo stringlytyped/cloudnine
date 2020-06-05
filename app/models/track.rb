@@ -4,7 +4,7 @@ class Track < ApplicationRecord
   ##
   # Given a Spotify track returned from the Spotify API, returns a Track record to represent the track.
   #
-  # If a Track record for the Spotify track already exists in the database, the existing Track is returned and its attributes are updated with the values returned by the API (passed in as +spotify_track+ and, optionally, +spotify_audio_features+). The new values aren't saved to the database.
+  # If a Track record for the Spotify track already exists in the database, the existing Track is returned and its attributes are updated with the values returned by the API (passed in as +spotify_track+ and, optionally, +spotify_audio_features+). The new values ARE NOT SAVED to the database.
   #
   # If no Track record for the Spotify track exists in the database, a new one is created and initialized with values from the API (passed in as +spotify_track+ and, optionally, +spotify_audio_features+). The new record is not persisted to the database.
   #
@@ -30,7 +30,7 @@ class Track < ApplicationRecord
   ##
   # Given a Spotify track returned from the Spotify API, returns a Track record to represent the track and ensures it is saved to the database.
   #
-  # If a Track record for the Spotify track already exists in the database, the existing Track is returned and its attributes are updated with the values returned by the API (passed in as +spotify_track+ and +spotify_audio_features+). The new values are saved to the database.
+  # If a Track record for the Spotify track already exists in the database, the existing Track is returned and its attributes are updated with the values returned by the API (passed in as +spotify_track+ and +spotify_audio_features+). The new values ARE SAVED to the database.
   #
   # If no Track record for the Spotify track exists in the database, a new one is created with values from the API (passed in as +spotify_track+ and+spotify_audio_features+). The new record is persisted to the database.
   #
