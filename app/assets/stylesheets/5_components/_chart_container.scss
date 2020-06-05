@@ -2,5 +2,15 @@
   // Required for chart to behave responsively
   // See https://www.chartjs.org/docs/latest/general/responsive.html#important-note
   position: relative;
-  width: 60vw;
+  margin: 30px 0;
+
+  @include respond-to("mobile-up") {
+    width: calc(100vw - 60px);
+  }
+
+  @include respond-to("tablet-up") {
+    width: 60vw;
+    max-width: 811px;
+    min-width: 100%;
+  }
 }
