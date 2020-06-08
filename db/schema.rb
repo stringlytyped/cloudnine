@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_154431) do
     t.string "provider", null: false
     t.string "uid", null: false
     t.string "credentials_json"
+    t.time "privacy_consent_at"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

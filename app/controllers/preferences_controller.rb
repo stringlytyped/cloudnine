@@ -1,4 +1,5 @@
 class PreferencesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_preferences
 
   def edit

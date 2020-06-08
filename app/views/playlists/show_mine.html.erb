@@ -4,7 +4,7 @@
 
   <div class="playlist-view_weather-n-mood">
     <%= render 'weather', location: @location %>
-    <%= render 'mood_rater' %>
+    <%= render 'mood_rater', path: :mood_ratings_path, method: :post %>
   </div>
 
   <div class="playlist-view_toggle">

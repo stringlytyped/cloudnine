@@ -1,0 +1,21 @@
+<%= flash_messages %>
+
+<div class="start-view">
+  <img src="/assets/logo.svg" alt="Cloudnine">
+
+  <header>
+    <h1>Let's get started :)</h1>
+    <p>I'll need some information to build your personalised playlist.</p>
+  </header>
+
+  <h2>What's your location?</h2>
+  <p>I need this to look up the weather in your area.</p>
+
+  <%= form_with method: "put" do %>
+    <div class="form-field">
+      <%= label_tag :city, "City/town:" %>
+      <%= text_field_tag :city, @city, placeholder: "E.g. Berlin, DE" %>
+    </div>
+    <%= submit_tag "Next", class: "button" %>
+  <% end %>
+</div>

@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # RSpotify
       t.string :credentials_json
 
+      t.time :privacy_consent_at
       t.boolean :admin,   null: false, default: false
 
       ## Database authenticatable
