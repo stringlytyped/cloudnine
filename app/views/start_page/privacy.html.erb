@@ -1,0 +1,26 @@
+<%= flash_messages %>
+
+<div class="start-view">
+  <img src="/assets/logo.svg" alt="Cloudnine">
+
+  <header>
+    <h1>Privacy notice</h1>
+    <p>I promise to only use your data in the following ways:</p>
+  </header>
+
+  <div class="start-view_privacy-info">
+    <h2>Data collection & processing</h2>
+    <p><strong>Spotify data</strong>: I collect your Spotify user ID and the top songs from your Spotify profile. I also ask Spotify to recommend songs for you based on your Spotify usage history.</p>
+    <p><strong>Weather data</strong>: I remember the city/town name you provide to me and share this with <a href="https://openweathermap.org/" target="_blank">OpenWeather</a> to retrieve weather data for your location.</p>
+    <p><strong>Mood data</strong>: From time to time, I will ask you to rate your mood. (You also free to do so whenever you would like.) I use this information to help inform my song choices for your playlist.</p>
+    <h2>Data sharing</h2>
+    <p>The data I collect and process will not be shared with any third party without your explicit consent, except in the ways described above.</p>
+    <h2>Data deletion</h2>
+    <p>All Spotify data (exluding your user ID) is deleted if you stop using me for 31 days. Other data will be retained unless you request it be deleted.</p>
+    <p>You can request your data (specifically your Spotify user ID, other Spotify data, city/town and mood data) be deleted at any time by clicking the "delete data" button on the <em>Preferences</em> page.</p>
+  </div>
+  <div class="start-view_privacy-consent">
+    <p>By clicking the button below, you agree to have your data collected and processed as described above.</p>
+    <p><%= button_to "I accept", start_path(accept_privacy: true), method: :put, class: "button" %></p>
+  </div>
+</div>

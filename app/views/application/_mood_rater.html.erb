@@ -1,0 +1,11 @@
+<div class="mood-rater" data-js-mood-rater>
+  <%= link_to self.send(path, value: 1), method: method, class: "mood-rater_happy", data_js_happy: "" do %>
+    <img src="/assets/mood_happy.svg" alt="Happy">
+  <% end %>
+  <%= link_to self.send(path, value: 0.5), method: method, class: "mood-rater_neutral", data_js_neutral: "" do %>
+    <img src="/assets/mood_neutral.svg" alt="Neutral">
+  <% end %>
+  <%= link_to self.send(path, value: 0), method: method, class: "mood-rater_sad", data_js_sad: "" do %>
+    <img src="/assets/mood_sad.svg" alt="Neutral">
+  <% end %>
+</div>

@@ -1,0 +1,32 @@
+.start-view {
+  text-align: center;
+
+  header::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    border-bottom: 2px dotted black;
+  }
+
+  .mood-rater {
+    margin-top: 30px;
+  }
+
+  &_privacy-info {
+    text-align: left;
+  }
+
+  &_privacy-consent {
+    display: inline-block;
+    max-width: 400px;
+    font-style: italic;
+  }
+
+  &_privacy-consent::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    border-bottom: 2px dotted black;
+    margin-bottom: 3px;
+  }
+}
